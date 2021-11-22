@@ -1,0 +1,71 @@
+<%-include('../../partials/head.ejs')%>
+
+<div id="wrapper">
+
+    <%-include('../../partials/navigation.ejs')%>
+
+    <div id="titlebar">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>
+                        Login</h1>
+
+                    <nav id="breadcrumbs">
+                        <ul>
+                            <li><a href="../explorer/home.ejs">
+                                    Home</a></li>
+                            <li>
+                                Login </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+
+
+                <div class="my-account style-1 margin-top-5 margin-bottom-40">
+                    <ul class="tabs-nav">
+                        <li class=""><a href="#login">
+                                Login</a></li>
+                    </ul>
+                    <div class="tabs-container alt">
+
+                        <div class="tab-content" id="login">
+                            <form method="post" enctype="multipart/form-data" accept-charset="utf-8"
+                                action="https://www.thetolet.com/validation/user-action.php" class="login">
+                                <input type="hidden" id="token" name="token">
+                                <p class="form-row form-row-wide">
+                                    <label for="email">
+                                        Email <i class="fa fa-user"></i>
+                                        <input type="text" class="input-text" name="email" id="email" value="" />
+                                    </label>
+                                </p>
+                                <p class="form-row form-row-wide">
+                                    <label for="password">
+                                        Password <i class="fa fa-lock"></i>
+                                        <input class="input-text" type="password" name="pass" id="password" />
+                                    </label>
+                                </p>
+                                <p class="form-row">
+
+                                    <input type="submit" class="button border margin-top-10 fullwidth" name="login"
+                                        value="Login" />
+                                </p>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<%- include('../../partials/footer.ejs')%>
