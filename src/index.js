@@ -23,7 +23,8 @@ app.use(express.static(path.join(__dirname, "public")))
 
 // view setup
 app.set('view engine', 'ejs')
-app.set('views', 'views')
+const views = path.join(__dirname, "views")
+app.set('views', views)
 
 //routing setup
 app.use('/', Routes)

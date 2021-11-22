@@ -1,5 +1,3 @@
-
-
 exports.homeController = (req, res) => {
-    res.send("Home C")
+    res.render('pages/auth/register', { title: 'Hey', message: 'Hello there!' })
 }
