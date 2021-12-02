@@ -76,15 +76,18 @@
             <div class="right-side">
 
                 <div class="header-widget">
-                    <a href="/auth/login" class="sign-in"><span class="hidden-xs"><i
-                                class="fa fa-sign-in"></i></span>
+                    <% if (!isLoggedIn) { %>
+                    <a href="/auth/login" class="sign-in"><span class="hidden-xs"><i class="fa fa-sign-in"></i></span>
                         Login </a>
                     <a href="/auth/register" class="sign-in"><span class="hidden-xs"><i
                                 class="fa fa-sign-in"></i></span>
-                        
+
                         Register</a>
-                    <!-- <a href="submit-property.html" class="button border">
-                        Rent Your Property</a> -->
+                    <% } else { %>
+                    <a href="submit-property.html" class="button border">
+                        Rent Your Property</a>
+                    <a href="/auth/logout" class="sign-in"><span class="hidden-xs" style="margin-left: 10px"><i class="fa fa-sign-in"></i></span>Logout</a>
+                        <% }%>
                 </div>
 
             </div>
