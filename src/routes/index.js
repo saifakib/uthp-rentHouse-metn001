@@ -2,7 +2,8 @@ const router = require('express').Router()
 const authRoute = require('./authRoute')
 const adminRoute = require('./adminRoute')
 const hwRoute = require('./hwRoute')
-const { homeController } = require('../controller/publicController')
+const { homeController, contactGetController, propertyListing, searchPropertyListing, profile,
+    profileProperty } = require('../controller/publicController')
 
 const { requireRole, authToRedirect } = require('../middleware/auth')
 
@@ -13,5 +14,11 @@ router.use('/admin', [requireRole(['admin'])], adminRoute)
 router.use('/hw',[requireRole(['hw'])], hwRoute)
 
 router.get('/', homeController)
+router.get('/profile', profile)
+router.get('/profile/property', profileProperty)
+
+router.get('/contact', contactGetController)
+router.get('/property-listing', propertyListing)
+router.get('/search-property-listing', searchPropertyListing)
 
 module.exports = router;

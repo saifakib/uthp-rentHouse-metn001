@@ -1,12 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Location Create</title>
-</head>
-<body>
-    <h1>Location Create Page</h1>
-</body>
-</html>
+<%-include('../../partials/head.ejs')%>
+
+<div id="wrapper">
+
+    <%-include('../../partials/navigation.ejs')%>
+
+</div>
+<div id="titlebar">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2> Add New District </h2>
+                <nav id="breadcrumbs">
+                    <ul>
+                        <li><a href="/"> Home</a></li>
+                        <li> Admin Dashboard </li>
+                        <li> Add District </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <!-- <div class="notification success closeable">
+                        <p>Login Successfull !! ✔ Welcome Back Saif 😊</p><a class="close"></a>
+                    </div> -->
+            <form method="post" enctype="multipart/form-data" accept-charset="utf-8" action="/">
+                <label> District Name </label>
+                <input value="" name="location" type="text">
+                <label> Confirm District Name </label>
+                <input value="" name="confirm" type="text">
+                <button class="button margin-top-20 margin-bottom-20" name="user_profile_edit" type="submit">
+                    SUBMIT</button>
+            </form>
+        </div>
+
+        <%- include('./sideBar.ejs')%>
+
+    </div>
+</div>
+
+
+<%- include('../../partials/footer.ejs')%>

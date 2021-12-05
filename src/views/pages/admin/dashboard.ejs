@@ -1,12 +1,111 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <h2>Admin Dashboard</h2>
-</body>
-</html>
+<%-include('../../partials/head.ejs')%>
+
+<div id="wrapper">
+
+    <%-include('../../partials/navigation.ejs')%>
+
+</div>
+<div id="titlebar">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2> Admin Dashboard </h2>
+                <nav id="breadcrumbs">
+                    <ul>
+                        <li><a href="https://www.thetolet.com/en/"> Home</a></li>
+                        <li> Admin Dashboard </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <table class="manage-table responsive-table">
+                <tr>
+                    <th> List Name</th>
+                    <th>Total</th>
+                    <th>View Full List</th>
+                </tr>
+                <tr>
+                    <td class="title-container">
+                        <div class="title">
+                            <h4><a href="/">
+                                    House Owners</a>
+                            </h4>
+                        </div>
+                    </td>
+                    <td class="title">
+                        84 </td>
+                    <td class="title">
+                        <a href="https://www.thetolet.com/property-edit/4671"></i> VIEW</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title-container">
+                        <div class="title">
+                            <h4><a href="/">
+                                    Properties</a>
+                            </h4>
+                        </div>
+                    </td>
+                    <td class="title">
+                        184 </td>
+                    <td class="title">
+                        <a href="https://www.thetolet.com/property-edit/4671"></i> VIEW</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title-container">
+                        <div class="title">
+                            <h4><a href="/">
+                                    Consumers</a>
+                            </h4>
+                        </div>
+                    </td>
+                    <td class="title">
+                        184 </td>
+                    <td class="title">
+                        <a href="https://www.thetolet.com/property-edit/4671"></i> VIEW</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title-container">
+                        <div class="title">
+                            <h4><a href="/">
+                                    District</a>
+                            </h4>
+                        </div>
+                    </td>
+                    <td class="title">
+                        184 </td>
+                    <td class="title">
+                        <a href="https://www.thetolet.com/property-edit/4671"></i> VIEW</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title-container">
+                        <div class="title">
+                            <h4><a href="/">
+                                    Area</a>
+                            </h4>
+                        </div>
+                    </td>
+                    <td class="title">
+                        184 </td>
+                    <td class="title">
+                        <a href="https://www.thetolet.com/property-edit/4671"></i> VIEW</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <%- include('./sideBar.ejs')%>
+
+    </div>
+</div>
+
+
+<%- include('../../partials/footer.ejs')%>
