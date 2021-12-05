@@ -1,12 +1,97 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Category List</title>
-</head>
-<body>
-    <h1>Category List Page</h1>
-</body>
-</html>
+<%-include('../../partials/head.ejs')%>
+
+<div id="wrapper">
+
+    <%-include('../../partials/navigation.ejs')%>
+
+</div>
+<div id="titlebar">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2> Category List </h2>
+                <nav id="breadcrumbs">
+                    <ul>
+                        <li><a href="/"> Home</a></li>
+                        <li> Admin Dashboard </li>
+                        <li> All Category </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <table class="manage-table responsive-table">
+                <tr>
+                    <th style="width:10%">ID</th>
+                    <th>Category Name</th>
+                    <th>Total Property</th>
+                    <th>Rented</th>
+                    <th>Action</th>
+                </tr>
+                <tr>
+                    <td>
+                        <h4 style="margin-left: 15px"><a href="/">
+                                1</a>
+                        </h4>
+                    </td>
+                    <td>
+                        <h4>
+                            Family
+                        </h4>
+                    </td>
+                    <td>
+                        <h4>
+                            200
+                        </h4>
+                    </td>
+                    <td>
+                        <h4>
+                            150
+                        </h4>
+                    </td>
+                    <td class="action">
+                        <a href="/"><i class="fa fa-pencil"></i> Edit</a>
+                        <a href="/"><i class="fa fa-eye-slash"></i> Reactive</a>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <h4 style="margin-left: 15px"><a href="/">
+                                1</a>
+                        </h4>
+                    </td>
+                    <td>
+                        <h4>
+                            Bachelor
+                        </h4>
+                    </td>
+                    <td>
+                        <h4>
+                            100
+                        </h4>
+                    </td>
+                    <td>
+                        <h4>
+                            87
+                        </h4>
+                    </td>
+                    <td class="action">
+                        <a href="/"><i class="fa fa-pencil"></i> Edit</a>
+                        <a href="/"><i class="fa fa-eye-slash"></i> Reactive</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <%- include('./sideBar.ejs')%>
+
+    </div>
+</div>
+
+
+<%- include('../../partials/footer.ejs')%>

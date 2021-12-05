@@ -1,0 +1,100 @@
+<%-include('../../partials/head.ejs')%>
+
+<div id="wrapper">
+
+    <%-include('../../partials/navigation.ejs')%>
+
+</div>
+<div id="titlebar">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2> My Profile </h2>
+                <nav id="breadcrumbs">
+                    <ul>
+                        <li><a href="https://www.thetolet.com/en/"> Home</a></li>
+                        <li> My Profile </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-4" style="margin-bottom:2rem;">
+                    <div class="edit-profile-photo"> <span id="uploaded_image"><img
+                                src="https://www.thetolet.com/upload/pro_pic/propic_11940.png?t=1638452479"
+                                alt="Saif"></span>
+                        <div class="change-photo-btn">
+                            <div class="photoUpload"> <span><i class="fa fa-upload"></i> Change Photo</span>
+                                <input type="file" class="upload" name="pro_pic" id="pro_pic" /> </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8 my-profile">
+                    <!-- <div class="notification success closeable">
+                        <p>Login Successfull !! ✔ Welcome Back Saif 😊</p><a class="close"></a>
+                    </div> -->
+                    <form method="post" enctype="multipart/form-data" accept-charset="utf-8"
+                        action="https://www.thetolet.com/validation/user-action.php"
+                        onsubmit="if (!window.__cfRLUnblockHandlers) return false; return myFunction()"
+                        data-cf-modified-4868255f6742ba14dd6e068f-=""> <label> Full Name</label> <input value="Saif"
+                            name="name" type="text"> <label> Contact Number</label> <input value="01737569999"
+                            name="contact" id="contact_number" type="text"> <label>
+                            Email</label> <input value="fci.akib@gmail.com" name="email" type="text"> <label
+                            for="gender"> Gender </label> <select class="form-select" id="gender" name="gender"
+                            required="required"
+                            oninvalid="if (!window.__cfRLUnblockHandlers) return false; this.setCustomValidity('Select your gender')"
+                            oninput="if (!window.__cfRLUnblockHandlers) return false; this.setCustomValidity('')"
+                            data-cf-modified-4868255f6742ba14dd6e068f-="">
+                            <option value="">Select Gender</option>
+                            <option value="male" selected>Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select> <button class="button margin-top-20 margin-bottom-20" name="user_profile_edit"
+                            type="submit"> SUBMIT</button> </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 make-me-sticky">
+            <div class="sidebar left">
+                <div class="my-account-nav-container">
+                    <ul class="my-account-nav">
+                        <li class="sub-nav-title"> Manage Account</li>
+                        <li><a href="https://www.thetolet.com/en/profile/"><i class="fa fa-user"></i> My
+                                Profile</a></li>
+                        <li><a href="https://www.thetolet.com/en/profile/password-change.php"><i class="fa fa-lock"></i>
+                                Change Password</a></li>
+                    </ul>
+                    <ul class="my-account-nav">
+                        <li class="sub-nav-title"> Manage Listing</li>
+                        <li><a href="https://www.thetolet.com/en/profile/property.php"><i class="fa fa-home"></i> My
+                                Properties</a></li>
+                        <li><a href="https://www.thetolet.com/en/submit-property"><i class="fa fa-plus-circle"></i>
+                                Submit Property</a></li>
+                    </ul>
+                    <ul class="my-account-nav">
+                        <li class="sub-nav-title"> Manage Listing</li>
+                        <li><a><i class="fa fa-info"></i> My Request</a></li>
+                        <li><a href="https://www.thetolet.com/en/submit-request"><i class="fa fa-plus-circle"></i>
+                                Submit New Request</a></li>
+                    </ul>
+                    <ul class="my-account-nav">
+                        <li><a href="https://www.thetolet.com/en/profile/myrefer.php"><i class="fa fa-globe"></i> My
+                                Refer</a></li>
+                    </ul>
+                    <ul class="my-account-nav">
+                        <li><a href="https://www.thetolet.com/en/logout.php"><i class="fa fa-sign-out"></i>
+                                Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<%- include('../../partials/footer.ejs')%>

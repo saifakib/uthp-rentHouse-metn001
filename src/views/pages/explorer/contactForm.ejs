@@ -1,0 +1,80 @@
+<%-include('../../partials/head.ejs')%>
+
+<div id="wrapper">
+
+    <%-include('../../partials/navigation.ejs')%>
+
+</div>
+
+<div id="titlebar">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2> Contact </h2>
+                <nav id="breadcrumbs">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="property-listing-2.html"> Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <h4 class="headline margin-bottom-30">Find Us There</h4> Contact Details <div class="sidebar-textbox">
+                <p> Offline Office : Traffic Office Road,Mukterpara, Netrakona Sadar,Netrakona, Netrakona 2400
+                </p>
+                <ul class="contact-details">
+                    <li><i class="fa fa-user"></i> <strong>Name:</strong> <span><a href="https://fb.com/antoamitid"
+                                target="_blank">Amit Ghosh Anto</a> <br> <b> [
+                                Founder & CEO ]</b></span></li>
+                    <li><i class="fa fa-globe"></i> <strong>Web:</strong> <span><a href="#">www.thetolet.com</a></span>
+                    </li>
+                    <li><i class="fa fa-envelope"></i> <strong>E-Mail:</strong> <span><a href="contact.html">
+                                <span class="__cf_email__"
+                                    data-cfemail="6a0905041e0b091e2a1e020f1e05060f1e44090507">[email&#160;protected]</span></a></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <section id="contact">
+                <h4 class="headline margin-bottom-35">Contact Form</h4>
+                <div id="contact-message"> </div>
+                <form method="post" action="https://www.thetolet.com/validation/user-action.php" name="contactform"
+                    autocomplete="on">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div> <input name="name" type="text" id="name" placeholder="Your Name"
+                                    required="required" /> </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div> <input name="email" type="email" id="email" placeholder="Email Address"
+                                    required="required" /> </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div> <input name="phone" type="text" id="phone" placeholder="Your Phone Number"
+                                    required="required" /> </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div> <input name="subject" type="text" id="subject" placeholder="Subject"
+                                    required="required" /> </div>
+                        </div>
+                    </div>
+                    <div> <textarea name="message" cols="40" rows="3" id="comments" placeholder="Message"
+                            spellcheck="true" required="required"></textarea> </div> <input type="hidden" id="token"
+                        name="token"> <input type="submit" class="submit button" id="submit" name="contact"
+                        value="Submit Message" />
+                </form>
+            </section>
+        </div>
+    </div>
+</div>
+
+<%- include('../../partials/footer.ejs')%>
