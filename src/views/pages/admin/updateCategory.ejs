@@ -1,0 +1,44 @@
+<%-include('../../partials/head.ejs')%>
+
+<div id="wrapper">
+
+    <%-include('../../partials/navigation.ejs')%>
+
+</div>
+<div id="titlebar">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2> Update Category </h2>
+                <nav id="breadcrumbs">
+                    <ul>
+                        <li><a href="/"> Home</a></li>
+                        <li> Admin Dashboard </li>
+                        <li> Update Category </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <form method="POST" accept-charset="utf-8" action="/admin/category/edit">
+
+                <label style="font-size:20px"> Update Category Name </label>
+                <input type="text" class="input-text"  name="updateCategory"  value="<%= value.targetCategory.name %>" />
+                <input type="hidden" name="id" value="<%= value.targetCategory._id %>"/>
+
+                <button class="button margin-top-20 margin-bottom-20" type="submit">
+                    UPDATE</button>
+            </form>
+        </div>
+
+        <%- include('./sideBar.ejs')%>
+
+    </div>
+</div>
+
+
+<%- include('../../partials/footer.ejs')%>

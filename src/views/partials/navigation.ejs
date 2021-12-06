@@ -60,11 +60,9 @@
                         </li>
                         <li><a href="#">Category</a>
                             <ul>
-                                <li><a href="family-house.html">Family House</a></li>
-                                <li><a href="bachelor.html">Bachelor</a></li>
-                                <li><a href="office.html">Office</a></li>
-                                <li><a href="hostel.html">Hostel</a></li>
-                                <li><a href="sublet.html">Sublet</a></li>
+                                <% for(let cat of locals.categories) {%>
+                                <li><a href='/'><%= cat.name %></a></li>
+                                <% } %>
                             </ul>
                         </li>
                     </ul>
@@ -86,8 +84,9 @@
                     <% } else { %>
                     <a href="submit-property.html" class="button border">
                         Rent Your Property</a>
-                    <a href="/auth/logout" class="sign-in"><span class="hidden-xs" style="margin-left: 10px"><i class="fa fa-sign-in"></i></span>Logout</a>
-                        <% }%>
+                    <a href="/auth/logout" class="sign-in"><span class="hidden-xs" style="margin-left: 10px"><i
+                                class="fa fa-sign-in"></i></span>Logout</a>
+                    <% }%>
                 </div>
 
             </div>

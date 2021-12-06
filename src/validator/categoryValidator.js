@@ -1,5 +1,5 @@
 const { body } = require('express-validator');
-const { Category } = require('../../models');
+const { Category } = require('../models');
 
 module.exports = [
 
