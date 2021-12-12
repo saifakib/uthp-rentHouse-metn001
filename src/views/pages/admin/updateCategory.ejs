@@ -9,12 +9,12 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h2> Add New District </h2>
+                <h2> Update Category </h2>
                 <nav id="breadcrumbs">
                     <ul>
                         <li><a href="/"> Home</a></li>
                         <li> Admin Dashboard </li>
-                        <li> Add District </li>
+                        <li> Update Category </li>
                     </ul>
                 </nav>
             </div>
@@ -24,20 +24,15 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8">
+            <form method="POST" accept-charset="utf-8" action="/admin/category/edit">
 
-            <form method="POST" accept-charset="utf-8" action="/admin/location/create">
-                <label style="font-size:20px"> District Name </label>
-                <input name="location" type="text" value="<%= value.location ? value.location : '' %>" />
-                <div class="invalid-feedback" style="margin-bottom: 30px"><b><%= error.location && error.location %></b></div>
-
-                <label> Confirm District Name </label>
-                <input value="" name="confirm" type="text">
-                <div class="invalid-feedback"><b><%= error.confirm && error.confirm %></b></div>
+                <label style="font-size:20px"> Update Category Name </label>
+                <input type="text" class="input-text"  name="updateCategory"  value="<%= value.targetCategory.name %>" />
+                <input type="hidden" name="id" value="<%= value.targetCategory._id %>"/>
 
                 <button class="button margin-top-20 margin-bottom-20" type="submit">
-                    SUBMIT</button>
+                    UPDATE</button>
             </form>
-            
         </div>
 
         <%- include('./sideBar.ejs')%>

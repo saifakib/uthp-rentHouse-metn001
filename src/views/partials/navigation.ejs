@@ -25,46 +25,22 @@
                         <li>
                         <li><a href="#">Location</a>
                             <ul>
-                                <li><a href="dhaka-tolet-1.html">Dhaka</a>
+                                <% for(let loc of locals.locations) {%>
+                                <li><a href='/'><%= loc.name %></a>
                                     <ul class="menu-overlay">
-                                        <li><a href="dhaka/adabor-tolet/493.html">Adabor</a></li>
-                                        <li><a href="dhaka/aftab-nagar-tolet/606.html">Aftab Nagar</a></li>
-                                        <li><a href="dhaka/badda-tolet/495.html">Badda</a></li>
-                                        <li><a href="dhaka/banani-tolet/496.html">Banani</a></li>
-                                        <li><a href="dhaka/bangshal-tolet/497.html">Bangshal</a></li>
+                                        <% for(let area of loc.areas) {%>
+                                        <li><a href='/'><%= area.name %></a></li>
+                                        <% } %>
                                     </ul>
                                 </li>
-                                <li><a href="jamalpur-tolet-5.html">Jamalpur</a>
-                                    <ul class="menu-overlay">
-                                        <li><a href="jamalpur/sarishabari-tolet/176.html">Sarishabari</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="chittagong-tolet-43.html">Chittagong</a>
-                                    <ul class="menu-overlay">
-                                        <li><a href="chittagong/baijid-bostami-tolet/557.html">Baijid
-                                                Bostami</a></li>
-                                        <li><a href="chittagong/doublemooring-tolet/562.html">Doublemooring</a>
-                                        </li>
-                                        <li><a href="chittagong/kulshi-tolet/567.html">Kulshi</a></li>
-                                        <li><a href="chittagong/others-tolet/572.html">Others</a></li>
-                                        <li><a href="chittagong/potenga-tolet/570.html">Potenga</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="jessore-tolet-57.html">Jessore</a>
-                                    <ul class="menu-overlay">
-                                        <li><a href="jessore/jessore-sadar-tolet/286.html">Jessore Sadar</a>
-                                        </li>
-                                    </ul>
-                                </li>
+                                <% } %>
                             </ul>
                         </li>
                         <li><a href="#">Category</a>
                             <ul>
-                                <li><a href="family-house.html">Family House</a></li>
-                                <li><a href="bachelor.html">Bachelor</a></li>
-                                <li><a href="office.html">Office</a></li>
-                                <li><a href="hostel.html">Hostel</a></li>
-                                <li><a href="sublet.html">Sublet</a></li>
+                                <% for(let cat of locals.categories) {%>
+                                <li><a href='/'><%= cat.name %></a></li>
+                                <% } %>
                             </ul>
                         </li>
                     </ul>
@@ -86,8 +62,9 @@
                     <% } else { %>
                     <a href="submit-property.html" class="button border">
                         Rent Your Property</a>
-                    <a href="/auth/logout" class="sign-in"><span class="hidden-xs" style="margin-left: 10px"><i class="fa fa-sign-in"></i></span>Logout</a>
-                        <% }%>
+                    <a href="/auth/logout" class="sign-in"><span class="hidden-xs" style="margin-left: 10px"><i
+                                class="fa fa-sign-in"></i></span>Logout</a>
+                    <% }%>
                 </div>
 
             </div>

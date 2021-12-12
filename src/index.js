@@ -9,6 +9,7 @@ const MongoDBStore = require('connect-mongodb-session')(session);
 
 // internal imports 
 const { notFoundHandler, errorHandler } = require('./middleware/common/errorHandler')
+const PriviousLoad = require('./middleware/common/priviousLoad')
 const { bindUserWithRequest } = require('./middleware/auth')
 const setLocals = require('./middleware/setLocals')
 const Routes = require('./routes')
@@ -39,6 +40,7 @@ app.use(session({
 }))
 
 app.use(bindUserWithRequest())
+app.use(PriviousLoad())
 app.use(setLocals())
 
 // set static folder

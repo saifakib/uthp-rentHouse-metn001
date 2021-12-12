@@ -7,6 +7,10 @@ const areaSchema = new Schema(
             ref: 'Location',
             required: true
         },
+        location_name: {
+            type: String,
+            required: true
+        },
         name: {
             type: String,
             required: true

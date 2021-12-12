@@ -24,12 +24,16 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8">
-            <form method="post" enctype="multipart/form-data" accept-charset="utf-8" action="/">
-                <label> Category Name </label>
-                <input value="" name="category" type="text">
-                <label> Confirm Category Name </label>
-                <input value="" name="confirm" type="text">
-                <button class="button margin-top-20 margin-bottom-20" name="user_profile_edit" type="submit">
+            <form method="POST" accept-charset="utf-8" action="/admin/category/create">
+                <label style="font-size:20px"> Category Name </label>
+                <input type="text" class="input-text"  name="category"  value="<%= value.category ? value.category : '' %>" />
+                <div class="invalid-feedback" style="margin-bottom: 30px"><b><%= error.category && error.category %></b></div>
+
+                <label style="font-size:20px"> Confirm Category Name </label>
+                <input name="confirm" type="text" value="" />
+                <div class="invalid-feedback"><b><%= error.confirm && error.confirm %></b></div>
+
+                <button class="button margin-top-20 margin-bottom-20" type="submit">
                     SUBMIT</button>
             </form>
         </div>

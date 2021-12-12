@@ -1,12 +1,16 @@
 const { Location, Area } = require('../../models')
+const { validationResult } = require('express-validator')
+const errorFormatter = require('../../utils/validationErrorFormatter')
 
 exports.locationCreateGetController = (req, res, next) => {
-    res.render('pages/admin/locationCreate')
+    res.render('pages/admin/locationCreate', {
+        error: {}, value: {}
+    })
 }
 
 exports.locationCreatePostController = async (req, res, next) => {
 
-    const { name } = req.body;
+    const { location } = req.body;
 
     const errors = validationResult(req).formatWith(errorFormatter);
     if (!errors.isEmpty()) {
@@ -15,18 +19,18 @@ exports.locationCreatePostController = async (req, res, next) => {
             {
                 error: errors.mapped(),
                 value: {
-                    name
+                    location
                 },
                 // flashMessage: Flash.getMessage(req)
             });
     }
     try {
 
-        const location = new Location({
-            name
+        const newLocation = new Location({
+            name: location
         })
 
-        await location.save()
+        await newLocation.save()
             .then(savedLocation => {
                 //req.flash('success', 'Location Info Saved !!')
             })
@@ -38,7 +42,7 @@ exports.locationCreatePostController = async (req, res, next) => {
         next(e)
     }
 
-    res.redirect('/admin/locations');
+    res.redirect('/admin/location/list');
 }
 
 
@@ -56,47 +60,89 @@ exports.locationListController = async (req, res, next) => {
 }
 
 
+exports.locationUpdatePageController = async (req, res, next) => {
+    try {
+        const targetLocation = await Location.findById(req.query.explore)
+        res.render('pages/admin/updateDistrict', {
+            value: {
+                targetLocation
+            }
+        })
+    } catch (err) {
+        next(err)
+    }
+}
 
-exports.areaCreateGetController = (req, res, next) => {
-    res.render('pages/admin/areaCreate')
+exports.locationUpdateController = async (req, res, next) => {
+    try {
+        const savedLocation = await Location.findByIdAndUpdate(req.body.id, { name: req.body.updateLocation })
+        if (savedLocation) {
+            res.redirect('/admin/location/list')
+        }
+    } catch (err) {
+        next(err)
+    }
+}
+
+
+
+exports.areaCreateGetController = async (req, res, next) => {
+    try {
+        const districts = await Location.find()
+        res.render('pages/admin/areaCreate', {
+            districts,
+            error: {}
+        })
+    } catch (err) {
+        next(err)
+    }
+
 }
 
 exports.areaCreatePostController = async (req, res, next) => {
 
-    const { location_id, name } = req.body;
+    const { district_id, area } = req.body;
 
-    const errors = validationResult(req).formatWith(errorFormatter);
-    if (!errors.isEmpty()) {
-        //req.flash('fail', 'Area Info invalid !!')
-        return res.render('pages/admin/areaCreate',
-            {
-                error: errors.mapped(),
-                value: {
-                    name
-                },
-                // flashMessage: Flash.getMessage(req)
-            });
-    }
     try {
-
-        const area = new Area({
-            location_id,
-            name
-        })
-
-        await area.save()
-            .then(savedArea => {
-                //req.flash('success', 'Area Info Saved !!')
+        let location = await Location.findById( district_id )
+        let find = await Area.findOne({ name: area }, { location_id: district_id })
+        if (find) {
+            const districts = await Location.find()
+            res.render('pages/admin/areaCreate',
+                {
+                    error: {
+                        area: `${area} is allready in this District`
+                    },
+                    value: {},
+                    districts
+                    // flashMessage: Flash.getMessage(req)
+                });
+        } else {
+            const newArea = new Area({
+                location_id: district_id,
+                location_name: location.name,
+                name: area,
             })
-            .catch(error => {
-                next(error)
-            })
 
-    } catch (e) {
-        next(e)
+            await newArea.save()
+                .then(async (newSavedArea) => {
+                    let updateLocation = await Location.findOneAndUpdate(
+                        district_id,
+                        { $push: { areas: newSavedArea } }
+                        //{ $push: { areas: newSavedArea._id } }
+                    )
+                    if (updateLocation) {
+                        res.redirect('/admin/area/list');
+                    }
+                    //req.flash('success', 'Area Info Saved !!')
+                })
+                .catch(error => {
+                    next(error)
+                })
+        }
+    } catch (err) {
+        next(err)
     }
-
-    res.redirect('/admin/areas');
 }
 
 
@@ -110,5 +156,30 @@ exports.areaListController = async (req, res, next) => {
         });
     } catch (e) {
         next(e)
+    }
+}
+
+
+exports.areaUpdatePageController = async (req, res, next) => {
+    try {
+        const targetArea = await Area.findById(req.query.explore)
+        res.render('pages/admin/updateArea', {
+            value: {
+                targetArea
+            }
+        })
+    } catch (err) {
+        next(err)
+    }
+}
+
+exports.areaUpdateController = async (req, res, next) => {
+    try {
+        const savedArea = await Area.findByIdAndUpdate(req.body.id, { name: req.body.updateArea })
+        if (savedArea) {
+            res.redirect('/admin/area/list')
+        }
+    } catch (err) {
+        next(err)
     }
 }

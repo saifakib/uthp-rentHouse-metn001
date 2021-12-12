@@ -1,12 +1,16 @@
 const { Category } = require('../../models')
+const { validationResult } = require('express-validator')
+const errorFormatter = require('../../utils/validationErrorFormatter')
 
 exports.categoryCreateGetController = (req, res) => {
-    res.render('pages/admin/categoryCreate')
+    res.render('pages/admin/categoryCreate', {
+        error: {}, value: {}
+    })
 }
 
 exports.categoryCreatePostController = async (req, res, next) => {
 
-    const { name } = req.body;
+    const { category, confirm } = req.body;
 
     const errors = validationResult(req).formatWith(errorFormatter);
     if (!errors.isEmpty()) {
@@ -15,31 +19,33 @@ exports.categoryCreatePostController = async (req, res, next) => {
             {
                 error: errors.mapped(),
                 value: {
-                    name
+                    category
                 },
                 // flashMessage: Flash.getMessage(req)
             });
     }
     try {
 
-        const category = new Category({
-            name
+        const newCategory = new Category({
+            name: category
         })
 
-        await category.save()
+        await newCategory.save()
             .then(savedcategory => {
                 //req.flash('success', 'category Info Saved !!')
                 console.log(savedcategory)
             })
             .catch(error => {
+                console.log(error)
                 next(error)
             })
 
     } catch (e) {
+        console.log(e)
         next(e)
     }
 
-    res.redirect('/admin/categories');
+    res.redirect('/admin/category/list');
 }
 
 
@@ -53,5 +59,30 @@ exports.categoryListController = async (req, res, next) => {
         });
     } catch (e) {
         next(e)
+    }
+}
+
+
+exports.categoryUpdatePageController = async (req, res, next) => {
+    try {
+        const targetCategory = await Category.findById(req.query.explore)
+        res.render('pages/admin/updateCategory', {
+            value: {
+                targetCategory
+            }
+        })
+    } catch (err) {
+        next(err)
+    }
+}
+
+exports.categoryUpdateController = async (req, res, next) => {
+    try {
+        const savedCategory = await Category.findByIdAndUpdate(req.body.id, { name: req.body.updateCategory })
+        if (savedCategory) {
+            res.redirect('/admin/category/list')
+        }
+    } catch (err) {
+        next(err)
     }
 }

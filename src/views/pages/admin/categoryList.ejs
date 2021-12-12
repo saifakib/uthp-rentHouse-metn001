@@ -26,26 +26,24 @@
         <div class="col-md-8">
             <table class="manage-table responsive-table">
                 <tr>
-                    <th style="width:10%">ID</th>
                     <th>Category Name</th>
                     <th>Total Property</th>
                     <th>Rented</th>
                     <th>Action</th>
                 </tr>
+                <% if(categories.length === 0) { %>
+                <p style="text-align: center; font-size: 20px">There is no Category right now</p>
+                <% } else { 
+                    for( let category of categories.reverse() ) { %>
                 <tr>
                     <td>
-                        <h4 style="margin-left: 15px"><a href="/">
-                                1</a>
+                        <h4 style="margin-left: 15px">
+                            <%= category.name %>
                         </h4>
                     </td>
                     <td>
                         <h4>
-                            Family
-                        </h4>
-                    </td>
-                    <td>
-                        <h4>
-                            200
+                            <%= category.properties.length %>
                         </h4>
                     </td>
                     <td>
@@ -54,37 +52,16 @@
                         </h4>
                     </td>
                     <td class="action">
-                        <a href="/"><i class="fa fa-pencil"></i> Edit</a>
-                        <a href="/"><i class="fa fa-eye-slash"></i> Reactive</a>
+                        <a href="/admin/category/edit?explore=<%= category._id %>">
+                            <input name="id" type="hidden"><i class="fa fa-pencil"></i>
+                            Edit</a>
+                        <a href="/admin/status?model=Category&id=<%= category._id %>&status=<%= category.status %>"><i class="fa fa-eye-slash"></i>
+                             <%= category.status === true ? "Deactive" : "Reactive" %>
+                            </a>
                     </td>
                 </tr>
-
-                <tr>
-                    <td>
-                        <h4 style="margin-left: 15px"><a href="/">
-                                1</a>
-                        </h4>
-                    </td>
-                    <td>
-                        <h4>
-                            Bachelor
-                        </h4>
-                    </td>
-                    <td>
-                        <h4>
-                            100
-                        </h4>
-                    </td>
-                    <td>
-                        <h4>
-                            87
-                        </h4>
-                    </td>
-                    <td class="action">
-                        <a href="/"><i class="fa fa-pencil"></i> Edit</a>
-                        <a href="/"><i class="fa fa-eye-slash"></i> Reactive</a>
-                    </td>
-                </tr>
+                <% } 
+                } %>
             </table>
         </div>
 

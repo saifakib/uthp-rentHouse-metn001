@@ -26,58 +26,37 @@
         <div class="col-md-8">
             <table class="manage-table responsive-table">
                 <tr>
-                    <th style="width:10%">ID</th>
-                    <th>Name</th>
+                    <th style="width:10%">Name</th>
                     <th style="text-align:center">Area</th>
                     <th>Action</th>
                 </tr>
+                <% if(locations.length == 0) {%>
+                <p style="text-align: center; font-size: 20px">There is no District right now</p>
+                <% } else { 
+                        for( let location of locations ) {%>
                 <tr>
                     <td>
                         <h4 style="margin-left: 15px"><a href="/">
-                                1</a>
+                                <%= location.name %></a>
                         </h4>
                     </td>
                     <td>
-                        <h4><a href="/">
-                                Dhaka</a>
-                        </h4>
-                    </td>
-                    <td>
-                        <p>Adabor, jdnfka, nvjakdn, dnkj, jdankgj, jkdnkja, kjadnkjand, nvjkandf, nvjkadfn, Adabor,
-                            jdnfka, nvjakdn, dnkj, jdankgj, jkdnkja, kjadnkjand, nvjkandf, nvjkadf,Adabor, jdnfka,
-                            nvjakdn, dnkj, jdankgj, jkdnkja, kjadnkjand, nvjkandf, nvjkadf</p>
-
+                        <% if(location.areas.length == 0 ) {%>
+                        <p style="text-align: center; font-size: 18px">There is no Area right now</p>
+                        <% } else { %>
+                        <p style="text-align: center; font-size: 18px">
+                            <% for(let area of location.areas) { %>
+                                <span style="background-color:khaki; margin-right: 8px"><%= area.name %></span>
+                            <% } %>
+                        </p>
+                        <% }%>
 
                     </td>
                     <td class="action">
-                        <a href="/"><i class="fa fa-pencil"></i> Edit</a>
-                        <a href="/"><i class="fa fa-eye-slash"></i> Reactive</a>
+                        <a href="/admin/location/edit?explore=<%= location._id %>"><i class="fa fa-pencil"></i> Edit</a>
                     </td>
                 </tr>
-
-                <tr>
-                    <td>
-                        <h4 style="margin-left: 15px"><a href="/">
-                                1</a>
-                        </h4>
-                    </td>
-                    <td>
-                        <h4><a href="/">
-                                Dhaka</a>
-                        </h4>
-                    </td>
-                    <td>
-                        <p>Adabor, jdnfka, nvjakdn, dnkj, jdankgj, jkdnkja, kjadnkjand, nvjkandf, nvjkadfn, Adabor,
-                            jdnfka, nvjakdn, dnkj, jdankgj, jkdnkja, kjadnkjand, nvjkandf, nvjkadf,Adabor, jdnfka,
-                            nvjakdn, dnkj, jdankgj, jkdnkja, kjadnkjand, nvjkandf, nvjkadf</p>
-
-
-                    </td>
-                    <td class="action">
-                        <a href="/"><i class="fa fa-pencil"></i> Edit</a>
-                        <a href="/"><i class="fa fa-eye-slash"></i> Reactive</a>
-                    </td>
-                </tr>
+                <% } } %>
             </table>
         </div>
 
