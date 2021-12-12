@@ -12,7 +12,7 @@
                 <h2> Add New Area </h2>
                 <nav id="breadcrumbs">
                     <ul>
-                        <li><a href="https://www.thetolet.com/en/"> Home</a></li>
+                        <li><a href="/"> Home</a></li>
                         <li> Admin Dashboard </li>
                         <li> Add Area </li>
                     </ul>
@@ -24,29 +24,21 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8">
-            <form method="post" enctype="multipart/form-data" accept-charset="utf-8" action="/">
-                <label> District Name </label>
-                <select name="disid" id="disid" required=""
-                    oninvalid="if (!window.__cfRLUnblockHandlers) return false; this.setCustomValidity('Select district')"
-                    oninput="if (!window.__cfRLUnblockHandlers) return false; this.setCustomValidity('')"
-                    data-cf-modified-4e16625146b815a87379dadf-="">
+            <form method="POST" accept-charset="utf-8" action="/admin/area/create">
+
+                <label style="font-size:20px"> District Name </label>
+                <select name="district_id">
                     <option value="" selected="selected" required="">Select District *</option>
-                    <option value="55">
-                        Bagerhat </option>
-                    <option value="40">
-                        Bandarban </option>
-                    <option value="34">
-                        Barguna </option>
-                    <option value="35">
-                        Barisal </option>
-                    <option value="36">
-                        Bhola </option>
-                    <option value="18">
-                        Bogra </option>
+                    <% for(let district of districts) { %>
+                    <option value="<%= district._id %>"><%= district.name %> </option>
+                    <% } %>
                 </select>
-                <label> Area Name </label>
-                <input value="" name="confirm" type="text">
-                <button class="button margin-top-20 margin-bottom-20" name="user_profile_edit" type="submit">
+
+                <label style="font-size:20px"> Area Name </label>
+                <input name="area" type="text" />
+                <div class="invalid-feedback" style="margin-bottom: 30px"><b><%= error.area && error.area %></b></div>
+
+                <button class="button margin-top-20 margin-bottom-20" type="submit">
                     SUBMIT</button>
             </form>
         </div>

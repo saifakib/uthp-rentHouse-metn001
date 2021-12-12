@@ -6,12 +6,13 @@ const locationSchema = new Schema(
             type: String,
             required: true
         },
-        areas: [
-            {
-                type: Schema.Types.ObjectId,
-                ref: 'Area'
-            }
-        ]
+        // areas: [
+        //     {
+        //         type: Schema.Types.ObjectId,
+        //         ref: 'Area'
+        //     }
+        // ]
+         areas: [] //if store full object
     },
     { timestamps: true }
 )

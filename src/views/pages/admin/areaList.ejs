@@ -26,56 +26,35 @@
         <div class="col-md-8">
             <table class="manage-table responsive-table">
                 <tr>
-                    <th style="width:10%">ID</th>
-                    <th>Area Name</th>
-                    <th>District Name</th>
+                    <th style="width:10%">Area Name</th>
+                    <th style="text-align:center">District Name</th>
                     <th>Action</th>
                 </tr>
+                <% if(areas.length == 0) {%>
+                <tr>
+                    <p style="text-align: center; font-size: 20px">There is no Areas right now</p>
+
+                </tr>
+                <% } else { 
+                            for( let area of areas ) { %>
                 <tr>
                     <td>
-                        <h4 style="margin-left: 15px"><a href="/">
-                                1</a>
+                        <h4>
+                            <%= area.name %>
                         </h4>
                     </td>
-                    <td>
+                    <td style="text-align:center">
                         <h4>
-                            Adabar
-                        </h4>
-                    </td>
-                    <td>
-                        <h4>
-                            Dhaka
+                            <%= area.location_name %>
                         </h4>
 
                     </td>
                     <td class="action">
-                        <a href="/"><i class="fa fa-pencil"></i> Edit</a>
+                        <a href="/admin/area/edit?explore=<%= area._id %>"><i class="fa fa-pencil"></i> Edit</a>
                         <a href="/"><i class="fa fa-eye-slash"></i> Reactive</a>
                     </td>
                 </tr>
-
-                <tr>
-                    <td>
-                        <h4 style="margin-left: 15px"><a href="/">
-                                1</a>
-                        </h4>
-                    </td>
-                    <td>
-                        <h4>
-                            Adabar
-                        </h4>
-                    </td>
-                    <td>
-                        <h4>
-                            Dhaka
-                        </h4>
-
-                    </td>
-                    <td class="action">
-                        <a href="/"><i class="fa fa-pencil"></i> Edit</a>
-                        <a href="/"><i class="fa fa-eye-slash"></i> Reactive</a>
-                    </td>
-                </tr>
+                <% } }%>
             </table>
         </div>
 
