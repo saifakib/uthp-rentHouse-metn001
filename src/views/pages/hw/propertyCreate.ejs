@@ -1,0 +1,237 @@
+<%-include('../../partials/head.ejs')%>
+
+<div id="wrapper">
+
+    <%-include('../../partials/navigation.ejs')%>
+
+</div>
+<div id="titlebar" class="submit-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2><i class="fa fa-plus-circle"></i> Rent Your Property</h2>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="submit-page">
+                <form action="/hw/property/create" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+                    <h3>Location</h3>
+                    <div class="submit-section">
+                        <div class="row with-forms">
+                            <% for (let location of locals.locations)  { %>
+                            <div class="col-md-6">
+                                <h5>District <span style="color:red">*</span> </h5>
+                                <select name="disid" id="disid" required="required">
+                                    <option value="" selected="selected" required="">Select District *</option>
+                                    <option value="<%= location._id %>">
+                                        <%= location.name %> </option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <h5>Area <span style="color:red">*</span></h5>
+                                <select name="areaid" id="areaid" class="form-control" required="required">
+                                    <option value="" selected="selected">Choose District first *</option>
+                                    <% for (let area of location.areas)  { %>
+                                    <option value="<%= area._id %>">
+                                        <%= area.name %> </option>
+                                    <% } %>
+                                </select>
+                            </div>
+                            <% } %>
+                            <div class="col-md-4">
+                                <h5>Sector No: </span></h5>
+                                <input type="text" name="sector_no">
+                            </div>
+                            <div class="col-md-4">
+                                <h5>Road No: </span></h5>
+                                <input type="text" name="road_no">
+                            </div>
+                            <div class="col-md-4">
+                                <h5>House No: </span></h5>
+                                <input type="text" name="house_no">
+                            </div>
+                            <div class="col-md-12">
+                                <h5>Short Address <span style="color:red">*</span></h5>
+                                <input type="text" placeholder="Example : Dream House , Bashundhara City"
+                                    required="required" name="short_address" maxlength="50">
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Basic Information</h3>
+                    <div class="submit-section">
+                        <div class="row with-forms">
+                            <div class="col-md-6">
+                                <h5>Tolet Need From <span style="color:red">*</span></h5>
+                                <select name="monthid" required="required">
+                                    <option value="">Select Month</option>
+                                    <option value="1">January</option>
+                                    <option value="2">February</option>
+                                    <option value="3">March</option>
+                                    <option value="4">April</option>
+                                    <option value="5">May</option>
+                                    <option value="6">June</option>
+                                    <option value="7">July</option>
+                                    <option value="8">August</option>
+                                    <option value="9">September</option>
+                                    <option value="10">October</option>
+                                    <option value="11">November</option>
+                                    <option value="12">December</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <h5>Tolet for <span style="color:red">*</span></h5>
+                                <select name="categoryid" required="required">
+                                    <option value="">Choose Category</option>
+                                    <% for (let cat of locals.categories)  { %>
+                                    <option value="<%= cat._id %>"><%= cat.name %></option>
+                                    <% } %>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row with-forms">
+                            <div class="col-md-4">
+                                <h5>Bedroom <span style="color:red">*</span></h5>
+                                <select name="bedroom" class="form-control " required="required">
+                                    <option value="">Select Bedroom</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <h5>Bathroom <span style="color:red">*</span></h5>
+                                <select name="bathroom" class="form-control " required="required">
+                                    <option value="">Select Bathroom</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <h5>Belcony</span></h5>
+                                <select class="chosen-select-no-single" name="belcony">
+                                    <option value="">Select Belcony</option>
+                                    <option value="0">
+                                        Not Avilable </option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row with-forms">
+                            <div class="col-md-4">
+                                <h5>Floor No <span style="color:red">*</span></span></h5>
+                                <select class="chosen-select-no-single" name="floor" required="required">
+                                    <option value="">Select Floor</option>
+                                    <option value="0">Don't Know</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                    <option value="19">19</option>
+                                    <option value="20">20</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <h5>Size</span></h5>
+                                <div class="select-input disabled-first-option">
+                                    <input type="text" data-unit="Sq Ft" name="size">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <h5>Choose Gender <span style="color:red">*</span></h5>
+                                <select class="" name="gender" required="required">
+                                    <option value="">Select Gender</option>
+                                    <option value="Male">Only For Male</option>
+                                    <option value="Female">Only For Female</option>
+                                    <option value="All">For Everyone</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row with-forms">
+                            <div class="col-md-6">
+                                <h5>Price <span style="color:red">*</span></span></h5>
+                                <div class="select-input disabled-first-option">
+                                    <input type="number" data-unit="BDT" name="price">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h5 class="">Price Option</span></h5>
+                                <div class="checkboxes in-row margin-bottom-20">
+                                    <input id="check-2" type="checkbox" name="negotiable">
+                                    <label for="check-2">Negotiable</label>
+                                    <input id="check-3" type="checkbox" name="electricity_bill">
+                                    <label for="check-3">With Electricty Bill</label>
+                                    <input id="check-4" type="checkbox" name="gas_bill">
+                                    <label for="check-4">With Gas Bill</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Detailed Information</span></h3>
+                    <div class="submit-section">
+                        <div class="row with-forms">
+                            <div class="col-md-12">
+                                <h5 class="margin-top-30">Other Features</span></h5>
+                                <div class="checkboxes in-row margin-bottom-20">
+                                    <input id="other-2" type="checkbox" name="lift">
+                                    <label for="other-2">Lift</label>
+                                    <input id="other-3" type="checkbox" name="garage">
+                                    <label for="other-3">Garage</label>
+                                    <input id="other-4" type="checkbox" name="cctv">
+                                    <label for="other-4">CCTV</label>
+                                    <input id="other-5" type="checkbox" name="gas">
+                                    <label for="other-5">Gas</label>
+                                    <input id="other-6" type="checkbox" name="wifi">
+                                    <label for="other-6">Wifi</label>
+                                    <input id="other-7" type="checkbox" name="fire_alarm">
+                                    <label for="other-7">Fire Alarm</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <h5>Description</h5>
+                                <textarea class="WYSIWYG" name="details" cols="40" rows="3" id="summary"
+                                    spellcheck="true"></textarea>
+                            </div>
+                            <div class="col-md-12">
+                                <label class="">Picture <span>(Only jpg,jpeg,png
+                                        supported)</span></label>
+                                <input type="file" name="pics" multiple="multiple" id="gallery-photo-add" />
+                                <div id="preview"></div>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="button preview margin-top-5"><i class="fa fa-arrow-circle-right"></i>
+                        SUBMIT </button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<%- include('../../partials/footer.ejs')%>

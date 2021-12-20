@@ -2,6 +2,10 @@ const { Schema, model } = require('mongoose')
 
 const propertieSchema = new Schema(
     {
+        post_id: {
+            type: Number,
+            required: true
+        },
         homeOwner_id: {
             type: Schema.Types.ObjectId,
             ref: 'User',
@@ -47,10 +51,18 @@ const propertieSchema = new Schema(
         description: {
             type: String
         },
-        picture: String
+        status: {
+            type: Boolean,
+            default: true
+        },
+        picture: [
+            {
+                type: String
+            }
+        ]
     },
     { timestamps: true }
 )
 
-const Propertie = model('Propertie', propertieSchema)
-module.exports = Propertie
+const Property = model('Property', propertieSchema)
+module.exports = Property

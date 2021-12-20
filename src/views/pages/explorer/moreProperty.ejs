@@ -27,208 +27,58 @@
         <div class="col-md-12">
 
             <div class="listings-container grid-layout-three">
+                <% for(let property of properties) { %>
                 <div class="listing-item">
-                    <a href="dhaka/badda/4577/family-house-tolet-from-november.html" class="listing-img-container">
+                    <a href="/<%= property.area_id.location_name %>/<%= property.area_id.name %>/<%= property.post_id %>/details"
+                        class="listing-img-container">
                         <div class="listing-badges">
-                            <span>Family House</span>
+                            <span><%= property.category.name %></span>
                         </div>
                         <div class="listing-img-content">
-                            <span class="listing-price">10000.00/-<i>Per Month</i></span>
+                            <span class="listing-price"><%= property.price %>.00/-<i>Per Month</i></span>
                             <span class="like-icon with-tip" data-tip-content="Add to Bookmarks"></span>
-                            <span class="compare-button with-tip compare_4577" data-tip-content="Add to Compare"
-                                data-tip-adding-content="Adding To Compare <i class=&quot;fa fa-circle-o-notch fa-spin fa-fw&quot;></i>"
-                                id="post_4577"></span>
-                            <span class="compare-loading-button with-tip loading_post_4577"
-                                data-tip-content="Adding To Compare <i class=&quot;fa fa-circle-o-notch fa-spin fa-fw&quot;></i>"
-                                style="display: none"></span>
                         </div>
-                        <img src="" alt="Family House Tolet From November" class="img-responsive lazy" height="360"
-                            width="240">
+                        <img src="/uploads/propertyimage/<%= property.picture[0] %>"
+                            alt="Family House Tolet From November" class="img-responsive lazy" height="360" width="240">
                     </a>
                     <div class="listing-content">
                         <div class="listing-title">
-                            <h4 class="two-line"><a href="/">Family
-                                    House
+                            <h4 class="two-line"><a href="/"><%= property.category.name %>
                                     Tolet From November</a></h4>
-                            <a href="/"><i class="fa fa-map-marker"></i> Badda,
-                                Dhaka</a>
-                            <a href="/" class="details button border">Details</a>
+                            <a href="/"><i class="fa fa-map-marker"></i> <%= property.area_id.name %>,
+                                <%= property.area_id.location_name %></a>
                         </div>
                         <ul class="listing-details">
-                            <li><i class="fa fa-bed"></i> 2 Bedroom</li>
-                            <li class="pull-right"><i class="fa fa-tint"></i> 2 Bathroom</li>
+                            <li><i class="fa fa-bed"></i> <%= property.bedRoom %> Bedroom</li>
+                            <li class="pull-right"><i class="fa fa-tint"></i> <%= property.bathRoom %> Bathroom</li>
                         </ul>
                     </div>
                 </div>
-                <div class="listing-item">
-                    <a href="dhaka/badda/4576/family-house-tolet-from-november.html" class="listing-img-container">
-                        <div class="listing-badges">
-                            <span>Family House</span>
+                <% } %>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-md-12">
+                <div class="d-flex justify-content-between">
+                    <div class="col-md-2" style="margin-right:685px">
+                        <div class="show_more_main pagination" id="show_more_main4769">
+                            <% if(currentPage > 1) { %>
+                            <div class="center"> <a href="/property-listing?page=<%= currentPage - 1 %>" id="4769" class="show_more button border fullwidth margin-top-30"
+                                    title="Load Privious Property"> Priv</a>
+                            </div>
+                            <% } %>
                         </div>
-                        <div class="listing-img-content">
-                            <span class="listing-price">10000.00/-<i>Per Month</i></span>
-                            <span class="like-icon with-tip" data-tip-content="Add to Bookmarks"></span>
-                            <span class="compare-button with-tip compare_4576" data-tip-content="Add to Compare"
-                                data-tip-adding-content="Adding To Compare <i class=&quot;fa fa-circle-o-notch fa-spin fa-fw&quot;></i>"
-                                id="post_4576"></span>
-                            <span class="compare-loading-button with-tip loading_post_4576"
-                                data-tip-content="Adding To Compare <i class=&quot;fa fa-circle-o-notch fa-spin fa-fw&quot;></i>"
-                                style="display: none"></span>
-                        </div>
-                        <img src="" alt="Family House Tolet From November" class="img-responsive lazy" height="360"
-                            width="240">
-                    </a>
-                    <div class="listing-content">
-                        <div class="listing-title">
-                            <h4 class="two-line"><a href="/">Family
-                                    House
-                                    Tolet From November</a></h4>
-                            <a href="/"><i class="fa fa-map-marker"></i> Badda,
-                                Dhaka</a>
-                            <a href="/l" class="details button border">Details</a>
-                        </div>
-                        <ul class="listing-details">
-                            <li><i class="fa fa-bed"></i> 2 Bedroom</li>
-                            <li class="pull-right"><i class="fa fa-tint"></i> 2 Bathroom</li>
-                        </ul>
                     </div>
-                </div>
-                <div class="listing-item">
-                    <a href="/" class="listing-img-container">
-                        <div class="listing-badges">
-                            <span>Family House</span>
+                    <div class="col-md-2">
+                        <div class="show_more_main pagination" id="show_more_main4769">
+                            <% if( properties.length > 20 ) { %>
+                            <div class="center"> <a href="/property-listing?page=<%= currentPage + 1 %>" id="4769" class="show_more button border fullwidth margin-top-30"
+                                    title="Load Next Property">Next</a>
+                            </div>
+                            <% } %>
                         </div>
-                        <div class="listing-img-content">
-                            <span class="listing-price">14000.00/-<i>Per Month</i></span>
-                            <span class="like-icon with-tip" data-tip-content="Add to Bookmarks"></span>
-                            <span class="compare-button with-tip compare_4575" data-tip-content="Add to Compare"
-                                data-tip-adding-content="Adding To Compare <i class=&quot;fa fa-circle-o-notch fa-spin fa-fw&quot;></i>"
-                                id="post_4575"></span>
-                            <span class="compare-loading-button with-tip loading_post_4575"
-                                data-tip-content="Adding To Compare <i class=&quot;fa fa-circle-o-notch fa-spin fa-fw&quot;></i>"
-                                style="display: none"></span>
-                        </div>
-                        <img src="" alt="Family House Tolet From October" class="img-responsive lazy" height="360"
-                            width="240">
-                    </a>
-                    <div class="listing-content">
-                        <div class="listing-title">
-                            <h4 class="two-line"><a href="/">Family
-                                    House Tolet From October</a></h4>
-                            <a href="dhaka/jatrabari-tolet/510.html"><i class="fa fa-map-marker"></i> Jatrabari,
-                                Dhaka</a>
-                            <a href="/" class="details button border">Details</a>
-                        </div>
-                        <ul class="listing-details">
-                            <li><i class="fa fa-bed"></i> 2 Bedroom</li>
-                            <li class="pull-right"><i class="fa fa-tint"></i> 1 Bathroom</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="listing-item">
-                    <a href="/" class="listing-img-container">
-                        <div class="listing-badges">
-                            <span>Hostel Seat</span>
-                        </div>
-                        <div class="listing-img-content">
-                            <span class="listing-price">8500.00/-<i>Per Month</i></span>
-                            <span class="like-icon with-tip" data-tip-content="Add to Bookmarks"></span>
-                            <span class="compare-button with-tip compare_4574" data-tip-content="Add to Compare"
-                                data-tip-adding-content="Adding To Compare <i class=&quot;fa fa-circle-o-notch fa-spin fa-fw&quot;></i>"
-                                id="post_4574"></span>
-                            <span class="compare-loading-button with-tip loading_post_4574"
-                                data-tip-content="Adding To Compare <i class=&quot;fa fa-circle-o-notch fa-spin fa-fw&quot;></i>"
-                                style="display: none"></span>
-                        </div>
-                        <img src="" alt="Hostel Seat Tolet From November" class="img-responsive lazy" height="360"
-                            width="240">
-                    </a>
-                    <div class="listing-content">
-                        <div class="listing-title">
-                            <h4 class="two-line"><a href="dhaka/badda/4574/hostel-seat-tolet-from-november.html">Hostel
-                                    Seat
-                                    Tolet From November</a></h4>
-                            <a href="dhaka/badda-tolet/495.html"><i class="fa fa-map-marker"></i> Badda,
-                                Dhaka</a>
-                            <a href="dhaka/badda/4574/hostel-seat-tolet-from-november.html"
-                                class="details button border">Details</a>
-                        </div>
-                        <ul class="listing-details">
-                            <li><i class="fa fa-bed"></i> 1 Bedroom</li>
-                            <li class="pull-right"><i class="fa fa-tint"></i> 1 Bathroom</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="listing-item">
-                    <a href="/" class="listing-img-container">
-                        <div class="listing-badges">
-                            <span>Family House</span>
-                        </div>
-                        <div class="listing-img-content">
-                            <span class="listing-price">Negotiable<i>Per Month</i></span>
-                            <span class="like-icon with-tip" data-tip-content="Add to Bookmarks"></span>
-                            <span class="compare-button with-tip compare_4573" data-tip-content="Add to Compare"
-                                data-tip-adding-content="Adding To Compare <i class=&quot;fa fa-circle-o-notch fa-spin fa-fw&quot;></i>"
-                                id="post_4573"></span>
-                            <span class="compare-loading-button with-tip loading_post_4573"
-                                data-tip-content="Adding To Compare <i class=&quot;fa fa-circle-o-notch fa-spin fa-fw&quot;></i>"
-                                style="display: none"></span>
-                        </div>
-                        <img src="" alt="Family House Tolet From November" class="img-responsive lazy" height="360"
-                            width="240">
-                    </a>
-                    <div class="listing-content">
-                        <div class="listing-title">
-                            <h4 class="two-line"><a
-                                    href="dhaka/farmgate/4573/family-house-tolet-from-november.html">Family
-                                    House Tolet From November</a></h4>
-                            <a href="dhaka/farmgate-tolet/597.html"><i class="fa fa-map-marker"></i> Farmgate,
-                                Dhaka</a>
-                            <a href="dhaka/farmgate/4573/family-house-tolet-from-november.html"
-                                class="details button border">Details</a>
-                        </div>
-                        <ul class="listing-details">
-                            <li><i class="fa fa-bed"></i> 2 Bedroom</li>
-                            <li class="pull-right"><i class="fa fa-tint"></i> 1 Bathroom</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="listing-item">
-                    <a href="/" class="listing-img-container">
-                        <div class="listing-badges">
-                            <span>Family House</span>
-                        </div>
-                        <div class="listing-img-content">
-                            <span class="listing-price">16000.00/-<i>Per Month</i></span>
-                            <span class="like-icon with-tip" data-tip-content="Add to Bookmarks"></span>
-                            <span class="compare-button with-tip compare_4572" data-tip-content="Add to Compare"
-                                data-tip-adding-content="Adding To Compare <i class=&quot;fa fa-circle-o-notch fa-spin fa-fw&quot;></i>"
-                                id="post_4572"></span>
-                            <span class="compare-loading-button with-tip loading_post_4572"
-                                data-tip-content="Adding To Compare <i class=&quot;fa fa-circle-o-notch fa-spin fa-fw&quot;></i>"
-                                style="display: none"></span>
-                        </div>
-                        <img src="" alt="Family House Tolet From November" class="img-responsive lazy" height="360"
-                            width="240">
-                    </a>
-                    <div class="listing-content">
-                        <div class="listing-title">
-                            <h4 class="two-line"><a
-                                    href="dhaka/rampura/4572/family-house-tolet-from-november.html">Family House
-                                    Tolet From November</a></h4>
-                            <a href="dhaka/rampura-tolet/528.html"><i class="fa fa-map-marker"></i> Rampura,
-                                Dhaka</a>
-                            <a href="dhaka/rampura/4572/family-house-tolet-from-november.html"
-                                class="details button border">Details</a>
-                        </div>
-                        <ul class="listing-details">
-                            <li><i class="fa fa-bed"></i> 2 Bedroom</li>
-                            <li class="pull-right"><i class="fa fa-tint"></i> 2 Bathroom</li>
-                        </ul>
                     </div>
                 </div>
             </div>
-            <div class="clearfix"></div>
         </div>
     </div>
 </div>

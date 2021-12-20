@@ -3,7 +3,7 @@ const Profile = require('./Profile')
 const Location = require('./Location')
 const Area = require('./Area')
 const Category = require('./Category')
-const Propertie = require('./Propertie')
+const Property = require('./Property')
 
 
 module.exports = {
@@ -12,5 +12,5 @@ module.exports = {
     Location,
     Area,
     Category,
-    Propertie
+    Property
 }

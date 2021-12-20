@@ -17,7 +17,7 @@ const userProfile = new Schema({
     properties : [
         {
             type : Schema.Types.ObjectId,
-            ref : 'Propertie'
+            ref : 'Property'
         }
     ]
 }, { timestamps : true })
