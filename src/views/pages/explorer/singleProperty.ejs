@@ -1,0 +1,120 @@
+<%-include('../../partials/head.ejs')%>
+
+<div id="wrapper">
+
+    <%-include('../../partials/navigation.ejs')%>
+
+</div>
+
+<div id="titlebar" class="property-titlebar margin-bottom-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="property-title">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <h2> <%= property.category.name %> Tolet From
+                                <% let month = [" ","January","February","March","April","May","June","July","August","September","October","November","December"] %>
+                                <%= month[property.month_need_from] %> </h2> <span class="post-loc"> <i
+                                    class="fa fa-map-marker"></i> <%= property.area_id.name %> ,
+                                <%= property.area_id.location_name %> </a>
+                            </span> <br>
+                            <!-- <span class="post-views"><i class="fa fa-eye"> </i> Post Views :
+                                    1080</span> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="property-pricing">
+                    <div class="property-price"> <br> <%= property.price %>/- BDT </div>
+                    <div class="sub-price"> Per Month </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<% if(property.picture.length > 0) { %>
+<div class="fullwidth-property-slider margin-bottom-50"> <a
+        href="/uploads/propertyimage/<%= property.picture[0] %>"
+        data-background-image="/uploads/propertyimage/<%= property.picture[0]%>" class="item mfp-gallery"></a></div>
+<% } %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-7">
+            <div class="property-description">
+                <ul class="property-main-features">
+                    <li>Bedrooms <span> <%= property.bedRoom %></span></li>
+                    <li>Bathrooms <span> <%= property.bathRoom %></span></li>
+                    <li>Belcony <span> <%= property.belCony ? property.belCony : "Not Available"%></span></li>
+                    <li>Floor <span> <%= property.floor_no ? property.floor_no : "Not Available" %></span></li>
+                    <li>Size <span> <%= property.size ? property.size : "Not Available" %></span></li>
+                    <li>Property ID <span><%= property.post_id %></span> </li>
+                </ul>
+                <h3 class="desc-headline">Exact Location</h3>
+                <ul class="property-features margin-top-0" style="columns: 1; -webkit-columns: 1;">
+                    <li style="margin: 0 0 7px 0;"><b>Short Address : </b><%= property.short_address %></li>
+                </ul>
+                <ul class="property-features margin-top-0">
+                    <li><b>Sector No : </b><span> <%= property.sector_no && property.sector_no %></span></li>
+                    <li><b>Road No : </b><span> <%= property.road_no && property.road_no %></span></li>
+                    <li><b>House No : </b><span> <%= property.house_no && property.house_no %></span></li>
+                    <li><b>Area Name : </b> <span> <%= property.area_id.name %></span></li>
+                    <li><b>District Name :</b> <span> <%= property.area_id.location_name %></span></li>
+                </ul>
+                <h3 class="desc-headline">Rules</h3>
+                <ul>
+                    <li>Free From: <%= month[property.month_need_from] %></li>
+                    <li>Gender : <%= property.gender %> </li>
+                    <li>Rent Available For <%= property.category.name %> </li>
+                </ul>
+                <h3 class="desc-headline">Description</h3>
+                <div class="">
+                    <p><%= property.description && property.description %></p>
+                </div>
+                <% if(property.price_include.length > 0) { %>
+                <h3 class="desc-headline">Bill Include</h3>
+                <ul class="property-features margin-top-0">
+                    <% for( let pi of property.price_include) { %>
+                    <li><%= pi %></li>
+                    <% } %>
+                </ul>
+                <% } %>
+
+                <% if(property.facilities.length > 0) { %>
+                <h3 class="desc-headline">Features</h3>
+                <ul class="property-features checkboxes margin-top-0">
+                    <% for( let pi of property.facilities) { %>
+                    <li><%= pi %></li>
+                    <% } %>
+                </ul>
+                <% } %>
+                <div class="margin-top-50"></div>
+
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-5 ">
+            <div class="sidebar sticky right">
+                <div class="widget">
+                    <div class="agent-widget theme-color-bg">
+                        <div class="agent-title">
+                            <div class="agent-photo">
+                                <img src="https://www.thetolet.com/upload/pro_pic/propic_11940.png?t=1639924670"
+                                    alt="Saif" />
+                            </div>
+                            <div class="agent-details">
+                                <h3 class="white"><a href=""> <%= property.homeOwner_id.fullname %></a></h3>
+                                <span class="white">
+                                    <i class="sl sl-icon-call-in"></i><%= property.homeOwner_id.mobile %>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<%- include('../../partials/footer.ejs')%>

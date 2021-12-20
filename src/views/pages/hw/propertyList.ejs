@@ -9,11 +9,11 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h2><%= locals.user.name %> Dashboard </h2>
+                <h2><%= locals.user.name %> Properties </h2>
                 <nav id="breadcrumbs">
                     <ul>
                         <li><a href="https://www.thetolet.com/en/"> Home</a></li>
-                        <li> <%= locals.user.name %> Dashboard </li>
+                        <li> <%= locals.user.name %> Properties </li>
                     </ul>
                 </nav>
             </div>
@@ -26,30 +26,39 @@
             <table class="manage-table responsive-table">
                 <tr>
                     <th>Property</th>
-                    <th>Total View</th>
                     <th>Action</th>
                 </tr>
-                <tr id="property_4671">
+                <% if ( properties.length == 0 ) { %>
+                <tr>
+                    <p style="text-align: center; font-size: 20px">There is no Property right now</p>
+
+                </tr>
+                <% } else {
+                    for(let property of properties) { %>
+                <tr id="">
                     <td class="title-container">
-                        <img src="https://www.thetolet.com/upload/post_pic/post_4671-1_thumb.jpg?t=1636886816" alt="">
+                        <% if(property.picture.length > 0) { %>
+                        <img src="/uploads/propertyimage/<%= property.picture[0]%>?t=1636886816" alt="">
+                        <% } %>
                         <div class="title">
-                            Post ID : 4671 <h4><a
+                            Post ID : <%= property.post_id %> <h4><a
                                     href="https://www.thetolet.com/dhaka/badda/4671/family-house-tolet-from-december">
-                                    Dream House, Badda Link Road</a></h4>
-                            <span>Badda , Dhaka</span>
+                                    <%= property.short_address %></a></h4>
+                            <span><%= property.area_id.name %> , <%= property.area_id.location_name %></span>
                             <span class="table-property-price">
-                                30000.00/- <i>
+                                <%= property.price %>/- <i>
                                     Per Month</i></span>
                         </div>
                     </td>
-                    <td class="">
-                        95 </td>
                     <td class="action">
-                        <a href=""><i class="fa fa-pencil"></i> Edit Details</a>
+                        <a href="/hw/property/edit?id=<%= property._id %>"><i class="fa fa-pencil"></i> Edit Details</a>
                         <a href=""><i class="fa fa-picture-o"></i> Edit Image</a>
-                        <a href=""><i class="fa fa-eye-slash"></i> Deactivate</a>
+                        <a href="/hw/property/status?id=<%= property._id %>&status=<%= property.status %>"><i class="fa fa-eye-slash"></i>
+                            <%= property.status === true ? "Deactivate" : "Reactivate" %>
+                           </a>
                     </td>
                 </tr>
+                <% } }%>
             </table>
         </div>
 
