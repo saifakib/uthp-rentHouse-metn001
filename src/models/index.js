@@ -4,6 +4,8 @@ const Location = require('./Location')
 const Area = require('./Area')
 const Category = require('./Category')
 const Property = require('./Property')
+const Tenant = require('./Tenant')
+const Payment = require('./Payment')
 
 
 module.exports = {
@@ -12,5 +14,7 @@ module.exports = {
     Location,
     Area,
     Category,
-    Property
+    Property,
+    Tenant,
+    Payment
 }

@@ -1,0 +1,74 @@
+<%-include('../../partials/head.ejs')%>
+
+<div id="wrapper">
+
+    <%-include('../../partials/navigation.ejs')%>
+
+</div>
+<div id="titlebar">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2> Tenant List </h2>
+                <nav id="breadcrumbs">
+                    <ul>
+                        <li><a href="https://www.thetolet.com/en/"> Home</a></li>
+                        <li> Tenant List </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <table class="manage-table responsive-table">
+                <tr>
+                    <th>Name</th>
+                    <th>House Rent</th>
+                    <th>Monthly Rate</th>
+                    <th>Last Payment</th>
+                    <th>Due Amount</th>
+                    <th>Action</th>
+                </tr>
+                <% if(locals.profileTenants.tenants.length > 0 ) { 
+                for(let tenant of locals.profileTenants.tenants) { %>
+                <tr>
+                    <td class="title">
+                        <h4><a href="/">
+                                <%= tenant.firstName +" "+ tenant.lastName%></a>
+                        </h4>
+                    </td>
+                    <td> <%= tenant.house.post_id %> </td>
+                    <td> <%= tenant.house.price %> </td>
+                    <td>
+                        <% if(tenant.payments.length > 0 ) { %>
+                        <%= tenant.payments[tenant.payments.length - 1] %>
+                        <% } else { %>
+                        N/A
+                        <% } %>
+                    </td>
+                    <td><%= tenant.due %> </td>
+                    <td>
+                        <a href="/hw/tenant/edit?id=<%= tenant._id%>"></i> Edit</a>
+                        <a href="/hw/tenant/delete?id=<%= tenant._id%>&property_id=<%= tenant.house._id %>"></i>
+                            Delete</a>
+                        <a href="/hw/tenant/edit?tenant_id=<%= tenant._id%>"></i> View</a>
+                    </td>
+                </tr>
+                <%} } else { %>
+                <tr>
+                    <p style="text-align: center; font-size: 20px">There Is No Tenant Right Now</p>
+                </tr>
+                <% } %>
+            </table>
+        </div>
+
+        <%- include('./sideBar.ejs')%>
+
+    </div>
+</div>
+
+
+<%- include('../../partials/footer.ejs')%>

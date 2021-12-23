@@ -6,12 +6,13 @@ const { homeController, contactGetController, propertyListing, searchPropertyLis
     profileProperty, singleGetPropertyController } = require('../controller/publicController')
 
 const { requireRole, authToRedirect } = require('../middleware/auth')
+const homeOwnerMiddleware = require('../middleware/homeOwner')
 
 
 router.use('/auth', authRoute)
 router.get('/dashboard', authToRedirect)
 router.use('/admin', [requireRole(['admin'])], adminRoute)
-router.use('/hw',[requireRole(['hw'])], hwRoute)
+router.use('/hw',[requireRole(['hw'])], homeOwnerMiddleware(), hwRoute)
 
 router.get('/', homeController)
 router.get('/profile', profile)

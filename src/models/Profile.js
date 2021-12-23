@@ -1,26 +1,33 @@
 const { Schema, model } = require('mongoose');
-const User = require('./User');
 
 const userProfile = new Schema({
 
-    user : {
-        type : Schema.Types.ObjectId,
-        ref : 'User',
-        required : true
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
     },
 
-    address : {
-        type : String,
-        maxlength : 1000
+    address: {
+        type: String,
+        maxlength: 1000
     },
 
-    properties : [
+    properties: [
         {
-            type : Schema.Types.ObjectId,
-            ref : 'Property'
+            type: Schema.Types.ObjectId,
+            ref: 'Property'
         }
-    ]
-}, { timestamps : true })
+    ],
+
+    tenants: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Tenant',
+            required: false
+        }
+    ],
+}, { timestamps: true })
 
 const Profile = model('Profile', userProfile);
 module.exports = Profile;
