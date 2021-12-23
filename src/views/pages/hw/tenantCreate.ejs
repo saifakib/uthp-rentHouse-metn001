@@ -1,0 +1,84 @@
+<%-include('../../partials/head.ejs')%>
+
+<div id="wrapper">
+
+    <%-include('../../partials/navigation.ejs')%>
+
+</div>
+<div id="titlebar">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2> Add New Tenant </h2>
+                <nav id="breadcrumbs">
+                    <ul>
+                        <li><a href="/"> Home</a></li>
+                        <li> Dashboard </li>
+                        <li> Add New Tenant </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="submit-page">
+                <form action="/hw/tenant/create" method="post" accept-charset="utf-8">
+                    <div class="row with-forms">
+                        <div class="col-md-6">
+                            <label for="firstName">
+                                First Name <i class="fa fa-user"></i>
+                                <input type="text" class="input-text" name="firstName"
+                                    value="<%= value.firstName ? value.firstName : '' %>" />
+                                <div class="invalid-feedback"><b><%= error.firstName && error.firstName %></b></div>
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="lastName">
+                                Last Name <i class="fa fa-user"></i>
+                                <input type="text" class="input-text" name="lastName"
+                                    value="<%= value.lastName ? value.lastName : '' %>" />
+                                <div class="invalid-feedback"><b><%= error.lastName && error.lastName %></b></div>
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="email">
+                                Email <i class="fa fa-envelope"></i>
+                                <input type="email" class="input-text" name="email"
+                                    value="<%= value.email ? value.email : '' %>" placeholder="Enter Your Email" />
+                                <div class="invalid-feedback"><b><%= error.email && error.email %></b></div>
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="contact_number">
+                                Contact Number:
+                                <i class="fa fa-mobile"></i>
+                                <input type="text" class="input-text" name="mobile"
+                                    value="<%= value.mobile ? value.mobile : '' %>" placeholder="01*********" />
+                                <div class="invalid-feedback"><b><%= error.mobile && error.mobile %></b></div>
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="property_id">
+                                House:
+                                <select name="property_id">
+                                    <% for (let prop of locals.displayProperties)  { %>
+                                    <option value="<%= prop._id %>"><%= prop.post_id %></option>
+                                    <% } %>
+                                </select>
+                            </label>
+                        </div>
+                    </div>
+                    <button type="submit" class="button preview margin-top-5"><i class="fa fa-arrow-circle-right"></i>
+                        Submit </button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<%- include('../../partials/footer.ejs')%>
