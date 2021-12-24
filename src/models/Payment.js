@@ -14,21 +14,6 @@ const paymentSchema = new Schema({
         type: Number,
         required: true
     },
-    email: {
-        type: String,
-        trim: true,
-        lowercase: true,
-        required: true
-    },
-    mobile: {
-        type: String,
-        required: true
-    },
-    house: {
-        type: Schema.Types.ObjectId,
-        ref: 'Property',
-        required: true
-    }
 },
     { timestamps: true }
 )
