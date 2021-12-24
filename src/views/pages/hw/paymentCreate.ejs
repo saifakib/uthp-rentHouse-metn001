@@ -1,0 +1,59 @@
+<%-include('../../partials/head.ejs')%>
+
+<div id="wrapper">
+
+    <%-include('../../partials/navigation.ejs')%>
+
+</div>
+<div id="titlebar">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2> New Payment </h2>
+                <nav id="breadcrumbs">
+                    <ul>
+                        <li><a href="/"> Home</a></li>
+                        <li> Payment </li>
+                        <li> New Payment </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="submit-page">
+                <form action="/hw/payment/create" method="post" accept-charset="utf-8">
+                    <div class="row with-forms">
+                        <div class="col-md-6">
+                            <label for="tenant_id">
+                                House:
+                                <select name="tenant_id">
+                                    <% for (let tenant of locals.profileTenants.tenants)  { %>
+                                    <option value="<%= tenant._id %>"><%= tenant.firstName + " " + tenant.lastName %>
+                                    </option>
+                                    <% } %>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="amount">
+                                Payment Amount:
+                                <input type="number" class="input-text" name="amount" required="required"
+                                    placeholder="123456" />
+                            </label>
+                        </div>
+                    </div>
+                    <button type="submit" class="button preview margin-top-5"><i class="fa fa-arrow-circle-right"></i>
+                        Payment Submit </button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<%- include('../../partials/footer.ejs')%>
