@@ -45,17 +45,24 @@ exports.registerPostController = async (req, res, next) => {
         })
 
         await user.save()
-            .then(savedUser => {
+            .then(saveUser => {
                 let profile = new Profile({
-                    user: savedUser._id
+                    user: saveUser._id
                 })
                 profile.save()
-                    .then(success => {
-                        req.user = savedUser
-                        console.log("Also Profile Created")
+                    .then(saveProfile => {
+                        saveUser.profile = saveProfile._id
+                        saveUser.save()
+                            .then(savedUser => {
+                                req.user = savedUser
+                            })
+                            .catch(err => {
+                                console.log(err)
+                                next(err)
+                            })
                     })
                     .catch(err => {
-                        console.log(err)
+                        next(err)
                     })
             })
             .catch(error => {
@@ -125,9 +132,9 @@ exports.loginPostController = async (req, res, next) => {
             });
         } else {
             req.session.isloggedIn = true,
-            req.session.user = user,
-            //req.flash('success', 'User  login!')
-            res.redirect('/dashboard')
+                req.session.user = user,
+                //req.flash('success', 'User  login!')
+                res.redirect('/dashboard')
         }
     }
     catch (e) {

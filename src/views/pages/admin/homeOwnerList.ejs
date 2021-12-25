@@ -26,79 +26,36 @@
         <div class="col-md-8">
             <table class="manage-table responsive-table">
                 <tr>
-                    <th style="width:05%">ID</th>
                     <th>Owner Name</th>
                     <th>Email</th>
                     <th>Mobile</th>
                     <th>Total Property</th>
                     <th>Total User</th>
-                    <th>Action</th>
+                    <!-- <th>Action</th> -->
                 </tr>
+                <% for( let user of users ) { %>
                 <tr>
                     <td>
-                        <h4 style="margin-left: 15px"><a href="/">#1</a></h4>
+                        <h4><%= user.fullname %></h4>
                     </td>
                     <td>
-                        <h4>Akbar Ali</h4>
+                        <h4><%= user.email %></h4>
                     </td>
                     <td>
-                        <h4>
-                            Akbarkhan@gmail.com
-                        </h4>
+                        <h4><%= user.mobile %></h4>
                     </td>
                     <td>
-                        <h4>
-                            01842317359
-                        </h4>
+                        <h4><%= user.profile.properties.length %></h4>
                     </td>
                     <td>
-                        <h4>
-                            24
-                        </h4>
+                        <h4><%= user.profile.tenants.length %></h4>
                     </td>
-                    <td>
-                        <h4>
-                            20
-                        </h4>
-                    </td>
-                    <td class="action">
-                        <a href="/"><i class="fa fa-pencil"></i> Edit</a>
-                        <a href="/"><i class="fa fa-eye-slash"></i> Reactive</a>
-                    </td>
+                    <!-- <td class="action">
+                                <a href="/"><i class="fa fa-pencil"></i> Edit</a>
+                                <a href="/"><i class="fa fa-eye-slash"></i> Reactive</a>
+                            </td> -->
                 </tr>
-
-                <tr>
-                    <td>
-                        <h4 style="margin-left: 15px"><a href="/">#1</a></h4>
-                    </td>
-                    <td>
-                        <h4>Akbar Ali</h4>
-                    </td>
-                    <td>
-                        <h4>
-                            Akbarkhan@gmail.com
-                        </h4>
-                    </td>
-                    <td>
-                        <h4>
-                            01842317359
-                        </h4>
-                    </td>
-                    <td>
-                        <h4>
-                            24
-                        </h4>
-                    </td>
-                    <td>
-                        <h4>
-                            20
-                        </h4>
-                    </td>
-                    <td class="action">
-                        <a href="/"><i class="fa fa-pencil"></i> Edit</a>
-                        <a href="/"><i class="fa fa-eye-slash"></i> Reactive</a>
-                    </td>
-                </tr>
+                <% } %>
             </table>
         </div>
 

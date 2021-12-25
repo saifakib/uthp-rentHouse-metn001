@@ -15,6 +15,7 @@ const hwRoute = require('./homeOwnerRoute')
 
 // Service Route
 router.use('/dashboard', dashboardRoute)
+router.use('/property', dashboardRoute)
 router.use('/profile', dashboardRoute)
 router.use('/location', locationRoute)
 router.use('/area', areaRoute)

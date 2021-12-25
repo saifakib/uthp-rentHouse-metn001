@@ -1,13 +1,60 @@
-const { User } = require('../../models')
+const { User, Profile, Location, Property } = require('../../models')
 const { validationResult } = require('express-validator')
 const errorFormatter = require('../../utils/validationErrorFormatter')
 const bcrypt = require('bcrypt');
 
 
-exports.dashboardController = (req, res, next) => {
-    res.render('pages/admin/dashboard', {
-        name: req.user.fullname
-    })
+exports.dashboardController = async (req, res, next) => {
+    try {
+        const profiles = await Profile.find()
+        let propertiesC = 0
+        let tenantC = 0
+        profiles.map((profile) => {
+            propertiesC += profile.properties.length
+            tenantC += profile.tenants.length
+        })
+
+        const locations = await Location.find()
+        let areasC = 0
+        locations.map((loc) => {
+            areasC += loc.areas.length
+        })
+
+        res.render('pages/admin/dashboard', {
+            profiles,
+            locations,
+            totalProperties: propertiesC || 0,
+            totalTenants: tenantC || 0,
+            totalAreas: areasC || 0
+        })
+    } catch (err) {
+        next(err)
+    }
+}
+
+exports.getAllPropertyController = async (req, res, next) => {
+    try {
+        const properties = await Property.find()
+        .populate({
+            path: 'homeOwner_id',
+            select: 'fullname'
+        })
+        .populate({
+            path: 'area_id',
+            select: 'name'
+        })
+        .populate({
+            path: 'category',
+            select: 'name'
+        })
+        console.log(properties)
+        res.render('pages/admin/propertyList', {
+            properties
+        })
+    }
+    catch (err) {
+        next(err)
+    }
 }
 
 exports.changePasswordController = (req, res, next) => {

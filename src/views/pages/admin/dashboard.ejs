@@ -25,78 +25,73 @@
         <div class="col-md-8">
             <table class="manage-table responsive-table">
                 <tr>
-                    <th> List Name</th>
+                    <th>List Name</th>
                     <th>Total</th>
                     <th>View Full List</th>
                 </tr>
                 <tr>
                     <td class="title-container">
                         <div class="title">
-                            <h4><a href="/">
+                            <h4><a href="/admin/homeowner/list">
                                     House Owners</a>
                             </h4>
                         </div>
                     </td>
+                    <td class="title"><%= profiles.length %></td>
                     <td class="title">
-                        84 </td>
-                    <td class="title">
-                        <a href="https://www.thetolet.com/property-edit/4671"></i> VIEW</a>
+                        <a href="/admin/homeowner/list"></i> VIEW</a>
                     </td>
                 </tr>
                 <tr>
                     <td class="title-container">
                         <div class="title">
-                            <h4><a href="/">
+                            <h4><a href="/admin/property/list">
                                     Properties</a>
                             </h4>
                         </div>
                     </td>
+                    <td class="title"><%= totalProperties %></td>
                     <td class="title">
-                        184 </td>
-                    <td class="title">
-                        <a href="https://www.thetolet.com/property-edit/4671"></i> VIEW</a>
+                        <a href="/admin/property/list"></i> VIEW</a>
                     </td>
                 </tr>
                 <tr>
                     <td class="title-container">
                         <div class="title">
-                            <h4><a href="/">
-                                    Consumers</a>
+                            <h4><a href="/admin/tenant/list">
+                                    Tenants</a>
                             </h4>
                         </div>
                     </td>
+                    <td class="title"><%= totalTenants %></td>
                     <td class="title">
-                        184 </td>
-                    <td class="title">
-                        <a href="https://www.thetolet.com/property-edit/4671"></i> VIEW</a>
+                        <a href="/admin/tenant/list"></i> VIEW</a>
                     </td>
                 </tr>
                 <tr>
                     <td class="title-container">
                         <div class="title">
-                            <h4><a href="/">
+                            <h4><a href="/admin/location/list">
                                     District</a>
                             </h4>
                         </div>
                     </td>
+                    <td class="title"><%= locations.length %></td>
                     <td class="title">
-                        184 </td>
-                    <td class="title">
-                        <a href="https://www.thetolet.com/property-edit/4671"></i> VIEW</a>
+                        <a href="/admin/location/list"></i> VIEW</a>
                     </td>
                 </tr>
                 <tr>
                     <td class="title-container">
                         <div class="title">
-                            <h4><a href="/">
+                            <h4><a href="/admin/area/list">
                                     Area</a>
                             </h4>
                         </div>
                     </td>
+                    <td class="title"><%= totalAreas %></td>
                     <td class="title">
-                        184 </td>
-                    <td class="title">
-                        <a href="https://www.thetolet.com/property-edit/4671"></i> VIEW</a>
+                        <a href="/admin/area/list"></i> VIEW</a>
                     </td>
                 </tr>
             </table>
