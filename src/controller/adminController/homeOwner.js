@@ -1,14 +1,16 @@
-const { User, Profile } = require('../../models')
+const { User } = require('../../models')
 
-exports.homeOwnerGetController = ( req, res ) => {
-    // try{
-    //     const hw = await User.find({})
-    //     res.render('pages/admin/homeOwnerList', {
-    //         hw: hw
-    //     });
-    // } catch (e) {
-    //     next(e)
-    // }
-        res.render('pages/admin/homeOwnerList')
-//}
+exports.homeOwnerGetController = async (req, res, next) => {
+    try {
+        const users = await User.find().where( { role: 'hw' })
+        .populate({
+            path: 'profile',
+            select: 'properties tenants'
+        })
+        res.render('pages/admin/homeOwnerList', {
+            users
+        });
+    } catch (e) {
+        next(e)
+    }
 }

@@ -9,12 +9,12 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h2> All Home Owner </h2>
+                <h2> All Property </h2>
                 <nav id="breadcrumbs">
                     <ul>
                         <li><a href="/"> Home</a></li>
-                        <li> Admin Dashboard </li>
-                        <li> Home Owner List </li>
+                        <li><a href="/admin/dashboard"> Admin Dashboard</a> </li>
+                        <li> Property List </li>
                     </ul>
                 </nav>
             </div>
@@ -26,31 +26,35 @@
         <div class="col-md-8">
             <table class="manage-table responsive-table">
                 <tr>
-                    <th style="width:10%">ID</th>
+                    <th style="width:10%">Property ID</th>
                     <th>Owner Name</th>
+                    <th>Category</th>
+                    <th>Area</th>
                     <th>Status</th>
                     <th>Action</th>
                 </tr>
+                <% for( let property of properties ) { %>
                 <tr>
                     <td>
-                        <h4>
-                            #202
-                        </h4>
+                        <h4><%= property.post_id %></h4>
                     </td>
                     <td>
-                        <h4>
-                            Mahbubur Alam
-                        </h4>
+                        <h4><%= property.homeOwner_id.fullname %></h4>
                     </td>
                     <td>
-                        <h4>
-                            Rented
-                        </h4>
+                        <h4><%= property.category.name %></h4>
                     </td>
-                    <td class="action">
+                    <td>
+                        <h4><%= property.area_id.name %></h4>
+                    </td>
+                    <td>
+                        <h4><%= property.status %></h4>
+                    </td>
+                    <!-- <td class="action">
                         <a href="/"><i class="fa fa-eye-slash"></i> Reactive</a>
-                    </td>
+                    </td> -->
                 </tr>
+                <% } %>
             </table>
         </div>
 

@@ -12,7 +12,7 @@
                 <h2><%= locals.user.fullname %> Dashboard </h2>
                 <nav id="breadcrumbs">
                     <ul>
-                        <li><a href="https://www.thetolet.com/en/"> Home</a></li>
+                        <li><a href="/"> Home</a></li>
                         <li> <%= locals.user.fullname %> Dashboard </li>
                     </ul>
                 </nav>
@@ -25,29 +25,43 @@
         <div class="col-md-8">
             <table class="manage-table responsive-table">
                 <tr>
-                    <th>Property</th>
-                    <th>Total View</th>
-                    <th>Action</th>
-                </tr>
-                <tr id="property_4671">
-                    <td class="title-container">
-                        <img src="https://www.thetolet.com/upload/post_pic/post_4671-1_thumb.jpg?t=1636886816" alt="">
-                        <div class="title">
-                            Post ID : 4671 <h4><a
-                                    href="https://www.thetolet.com/dhaka/badda/4671/family-house-tolet-from-december">
-                                    Dream House, Badda Link Road</a></h4>
-                            <span>Badda , Dhaka</span>
-                            <span class="table-property-price">
-                                30000.00/- <i>
-                                    Per Month</i></span>
-                        </div>
+                    <td>
+                        <h3><a href="/hw/property/list">Property</a></h3>
+                        <span>(Total)</span>
                     </td>
-                    <td class="">
-                        95 </td>
+                    <td style="font-size: 20px">95</td>
                     <td class="action">
-                        <a href=""><i class="fa fa-pencil"></i> Edit Details</a>
-                        <a href=""><i class="fa fa-picture-o"></i> Edit Image</a>
-                        <a href=""><i class="fa fa-eye-slash"></i> Deactivate</a>
+                        <a href="/hw/property/list">View</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h3><a href="/hw/tenant/list">Tenant</a></h3>
+                        <span>(Total)</span>
+                    </td>
+                    <td style="font-size: 20px">95</td>
+                    <td class="action">
+                        <a href="/hw/tenant/list">View</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h3><a href="/hw/payment/list">Income</a></h3>
+                        <span>(Total)</span>
+                    </td>
+                    <td style="font-size: 20px">95</td>
+                    <td class="action">
+                        <a href="/hw/payment/list">View</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h3><a href="/hw/payment/list">Income</a></h3>
+                        <span>(Monthly)</span>
+                    </td>
+                    <td style="font-size: 20px">95</td>
+                    <td class="action">
+                        <a href="/hw/payment/list">View</a>
                     </td>
                 </tr>
             </table>
