@@ -57,6 +57,43 @@ exports.getAllPropertyController = async (req, res, next) => {
     }
 }
 
+exports.myProfileController = (req, res, next) => {
+    res.render('pages/admin/profile', {
+        error: {}
+    })
+}
+
+exports.updateProfileController = async (req, res, next) => {
+
+    const { fullname, mobile, email } = req.body
+    console.log(req.body)
+
+    const errors = validationResult(req).formatWith(errorFormatter);
+    if (!errors.isEmpty()) {
+        return res.render('pages/admin/profile',
+            {
+                error: errors.mapped(),
+            });
+    }
+    try {
+        await User.findByIdAndUpdate(req.user._id, {
+            $set: {
+                fullname,
+                email,
+                mobile
+            }
+        })
+            .then(() => {
+                res.redirect('/admin/profile/my')
+            })
+            .catch(err => {
+                next(err)
+            })
+    } catch (err) {
+        next(err)
+    }
+}
+
 exports.changePasswordController = (req, res, next) => {
     res.render('pages/admin/changePassword', {
         error: {}

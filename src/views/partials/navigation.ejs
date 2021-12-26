@@ -6,15 +6,15 @@
             <div class="left-side">
 
                 <div id="logo">
-                    <h4><a href="/">FIND HOUSE<img src="" alt="" height="74" width="220"></a></h4>
+                    <h4><a href="/"">FIND HOUSE</a></h4>
                 </div>
 
-                <div class="mmenu-trigger">
-                    <button class="hamburger hamburger--collapse" type="button">
-                        <span class="hamburger-box">
-                            <span class="hamburger-inner"></span>
-                        </span>
-                    </button>
+                <div class=" mmenu-trigger">
+                            <button class="hamburger hamburger--collapse" type="button">
+                                <span class="hamburger-box">
+                                    <span class="hamburger-inner"></span>
+                                </span>
+                            </button>
                 </div>
 
                 <nav id="navigation" class="style-1">
@@ -60,11 +60,16 @@
 
                         Register</a>
                     <% } else { %>
+                    <% if (locals.user.role == "hw") { %>
+                    <a href="/hw/dashboard" class="sign-in">Dashboard</a>
                     <a href="/hw/property/create" class="button border">
                         Rent Your Property</a>
+                    <% } else {%>
+                    <a href="/admin/dashboard" class="sign-in">Dashboard</a>
+                    <% } %>
                     <a href="/auth/logout" class="sign-in"><span class="hidden-xs" style="margin-left: 10px"><i
                                 class="fa fa-sign-in"></i></span>Logout</a>
-                    <% }%>
+                    <%  } %>
                 </div>
 
             </div>
