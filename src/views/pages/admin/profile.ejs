@@ -1,0 +1,68 @@
+<%-include('../../partials/head.ejs')%>
+
+<div id="wrapper">
+
+    <%-include('../../partials/navigation.ejs')%>
+
+</div>
+<div id="titlebar">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2> Admin Profile </h2>
+                <nav id="breadcrumbs">
+                    <ul>
+                        <li><a href="/"> Home</a></li>
+                        <li> Admin Profile </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-4" style="margin-bottom:2rem;">
+                    <div class="edit-profile-photo"> <span id="uploaded_image">
+                            <% if(locals.user.avatar) { %>
+                            <img src="/uploads/profileimage/<%= locals.user.avatar %>"
+                                alt="<%= locals.user.fullname %>"></span>
+                        <% } else { %>
+                        <% if(locals.user.gender == "male") { %>
+                        <img src="/images/gender/maleAvatar.jpeg" alt="<%= locals.user.fullname %>"></span>
+                        <% } else { %>
+                        <img src="/images/gender/femaleAvatar.png" alt="<%= locals.user.fullname %>"></span>
+                        <% } } %>
+                        <!-- <div class="change-photo-btn">
+                            <form method="post" enctype="multipart/form-data" action="/hw/profile/imageChange">
+                                <div class="photoUpload"> <span><i class="fa fa-upload"></i> Change
+                                        Photo</span>
+                                    <input type="file" class="upload" name="pro" id="pro_pic" /> 
+                                </div>
+                                <button class="photoUpload" type="submit"> SUBMIT</button>
+                            </form>
+                        </div> -->
+                    </div>
+                </div>
+                <div class="col-md-8 my-profile">
+                    <form method="post" action="/hw/profile/update"> <label> Full Name</label>
+                        <input value="<%= locals.user.fullname %>" name="fullname" type="text">
+                        <div class="invalid-feedback"><b><%= error.fullname && error.fullname %></b></div>
+                        <label> Contact Number</label>
+                        <input value="<%= locals.user.mobile %>" name="mobile" id="mobile" type="text">
+                        <div class="invalid-feedback"><b><%= error.mobile && error.mobile %></b></div>
+                        <label>Email</label>
+                        <input value="<%= locals.user.email %>" name="email" type="text">
+                        <div class="invalid-feedback"><b><%= error.email && error.email %></b></div>
+                        </select> <button class="button margin-top-20 margin-bottom-20" type="submit"> SUBMIT</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <%- include('./sideBar.ejs')%>
+    </div>
+</div>
+
+<%- include('../../partials/footer.ejs')%>
