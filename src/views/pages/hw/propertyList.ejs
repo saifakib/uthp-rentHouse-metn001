@@ -1,10 +1,5 @@
 <%-include('../../partials/head.ejs')%>
 
-<div id="wrapper">
-
-    <%-include('../../partials/navigation.ejs')%>
-
-</div>
 <div id="titlebar">
     <div class="container">
         <div class="row">
@@ -12,7 +7,7 @@
                 <h2><%= locals.user.name %> Properties </h2>
                 <nav id="breadcrumbs">
                     <ul>
-                        <li><a href="https://www.thetolet.com/en/"> Home</a></li>
+                        <li><a href="/"> Home</a></li>
                         <li> <%= locals.user.name %> Properties </li>
                     </ul>
                 </nav>
@@ -42,7 +37,7 @@
                         <% } %>
                         <div class="title">
                             Post ID : <%= property.post_id %> <h4><a
-                                    href="https://www.thetolet.com/dhaka/badda/4671/family-house-tolet-from-december">
+                                    href="/<%= property.area_id.location_name %>/<%= property.area_id.name %>/<%= property.post_id %>/details">
                                     <%= property.short_address %></a></h4>
                             <span><%= property.area_id.name %> , <%= property.area_id.location_name %></span>
                             <span class="table-property-price">
@@ -53,16 +48,17 @@
                     <td class="action">
                         <a href="/hw/property/edit?id=<%= property._id %>"><i class="fa fa-pencil"></i> Edit Details</a>
                         <a href=""><i class="fa fa-picture-o"></i> Edit Image</a>
-                        <a href="/hw/property/status?id=<%= property._id %>&status=<%= property.status %>"><i class="fa fa-eye-slash"></i>
+                        <a href="/hw/property/status?id=<%= property._id %>&status=<%= property.status %>"><i
+                                class="fa fa-eye-slash"></i>
                             <%= property.status === true ? "Deactivate" : "Reactivate" %>
-                           </a>
+                        </a>
                     </td>
                 </tr>
                 <% } }%>
             </table>
         </div>
 
-        <%- include('./sideBar.ejs')%>
+        <%- include('../../partials/sideBar.ejs')%>
 
     </div>
 </div>

@@ -1,10 +1,5 @@
 <%-include('../../partials/head.ejs')%>
 
-<div id="wrapper">
-
-    <%-include('../../partials/navigation.ejs')%>
-
-</div>
 <div id="titlebar">
     <div class="container">
         <div class="row">
@@ -13,7 +8,7 @@
                 <nav id="breadcrumbs">
                     <ul>
                         <li><a href="/"> Home</a></li>
-                        <li> Admin Dashboard </li>
+                        <li><a href="/admin/dashboard"> Admin Dashboard</a></li>
                         <li> All District </li>
                     </ul>
                 </nav>
@@ -46,7 +41,7 @@
                         <% } else { %>
                         <p style="text-align: center; font-size: 18px">
                             <% for(let area of location.areas) { %>
-                                <span style="background-color:khaki; margin-right: 8px"><%= area.name %></span>
+                            <span style="background-color:khaki; margin-right: 8px"><%= area.name %></span>
                             <% } %>
                         </p>
                         <% }%>
@@ -60,8 +55,7 @@
             </table>
         </div>
 
-        <%- include('./sideBar.ejs')%>
-
+        <%- include('../../partials/sideBar.ejs')%>
     </div>
 </div>
 

@@ -1,10 +1,5 @@
 <%-include('../../partials/head.ejs')%>
 
-<div id="wrapper">
-
-    <%-include('../../partials/navigation.ejs')%>
-
-</div>
 <div id="titlebar">
     <div class="container">
         <div class="row">
@@ -12,8 +7,8 @@
                 <h2> Add New Category </h2>
                 <nav id="breadcrumbs">
                     <ul>
-                        <li><a href="https://www.thetolet.com/en/"> Home</a></li>
-                        <li> Admin Dashboard </li>
+                        <li><a href="/"> Home</a></li>
+                        <li><a href="/admin/dashboard"> Admin Dashboard</a></li>
                         <li> Add New Category </li>
                     </ul>
                 </nav>
@@ -26,8 +21,10 @@
         <div class="col-md-8">
             <form method="POST" accept-charset="utf-8" action="/admin/category/create">
                 <label style="font-size:20px"> Category Name </label>
-                <input type="text" class="input-text"  name="category"  value="<%= value.category ? value.category : '' %>" />
-                <div class="invalid-feedback" style="margin-bottom: 30px"><b><%= error.category && error.category %></b></div>
+                <input type="text" class="input-text" name="category"
+                    value="<%= value.category ? value.category : '' %>" />
+                <div class="invalid-feedback" style="margin-bottom: 30px"><b><%= error.category && error.category %></b>
+                </div>
 
                 <label style="font-size:20px"> Confirm Category Name </label>
                 <input name="confirm" type="text" value="" />
@@ -38,7 +35,7 @@
             </form>
         </div>
 
-        <%- include('./sideBar.ejs')%>
+        <%- include('../../partials/sideBar.ejs')%>
 
     </div>
 </div>

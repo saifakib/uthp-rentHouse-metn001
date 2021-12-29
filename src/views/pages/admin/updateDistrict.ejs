@@ -1,10 +1,5 @@
 <%-include('../../partials/head.ejs')%>
 
-<div id="wrapper">
-
-    <%-include('../../partials/navigation.ejs')%>
-
-</div>
 <div id="titlebar">
     <div class="container">
         <div class="row">
@@ -13,7 +8,7 @@
                 <nav id="breadcrumbs">
                     <ul>
                         <li><a href="/"> Home</a></li>
-                        <li> Admin Dashboard </li>
+                        <li><a href="/admin/dashboard"> Admin Dashboard</a></li>
                         <li> Update District </li>
                     </ul>
                 </nav>
@@ -27,15 +22,15 @@
             <form method="POST" accept-charset="utf-8" action="/admin/location/edit">
 
                 <label style="font-size:20px"> Update District Name </label>
-                <input type="text" class="input-text"  name="updateLocation"  value="<%= value.targetLocation.name %>" />
-                <input type="hidden" name="id" value="<%= value.targetLocation._id %>"/>
+                <input type="text" class="input-text" name="updateLocation" value="<%= value.targetLocation.name %>" />
+                <input type="hidden" name="id" value="<%= value.targetLocation._id %>" />
 
                 <button class="button margin-top-20 margin-bottom-20" type="submit">
                     UPDATE</button>
             </form>
         </div>
 
-        <%- include('./sideBar.ejs')%>
+        <%- include('../../partials/sideBar.ejs')%>
 
     </div>
 </div>

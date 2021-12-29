@@ -1,10 +1,5 @@
 <%-include('../../partials/head.ejs')%>
 
-<div id="wrapper">
-
-    <%-include('../../partials/navigation.ejs')%>
-
-</div>
 <div id="titlebar">
     <div class="container">
         <div class="row">
@@ -39,7 +34,7 @@
                         <h3><a href="/hw/tenant/list">Tenant</a></h3>
                         <span>(Total)</span>
                     </td>
-                    <td style="font-size: 20px">95</td>
+                    <td style="font-size: 20px"><%= locals.profileTenants.tenants.length %></td>
                     <td class="action">
                         <a href="/hw/tenant/list">View</a>
                     </td>
@@ -49,12 +44,12 @@
                         <h3><a href="/hw/payment/list">Income</a></h3>
                         <span>(Total)</span>
                     </td>
-                    <td style="font-size: 20px">95</td>
+                    <td style="font-size: 20px"><%= totalPayment %>/-</td>
                     <td class="action">
                         <a href="/hw/payment/list">View</a>
                     </td>
                 </tr>
-                <tr>
+                <!-- <tr>
                     <td>
                         <h3><a href="/hw/payment/list">Income</a></h3>
                         <span>(Monthly)</span>
@@ -63,11 +58,11 @@
                     <td class="action">
                         <a href="/hw/payment/list">View</a>
                     </td>
-                </tr>
+                </tr> -->
             </table>
         </div>
 
-        <%- include('./sideBar.ejs')%>
+        <%- include('../../partials/sideBar.ejs')%>
 
     </div>
 </div>

@@ -15,13 +15,38 @@
                             <label><input type="radio">For Rent</label>
                             <div class="search-type-arrow"></div>
                         </div>
+                        <input id="property" type="hidden" value=`${locals.locations}` />
+                        <script type="text/javascript">
+                            let locations = document.getElementById('property').value;
+                            function getLocationId(sel) {
+                                var idNo = sel.value;
+                                //const result = locations.filter(location => location._id == '61c9fbcb632b67e29afe1507')
+                                console.log(idNo)
+                                console.log(ss)
 
+                                // const xhr = new XMLHttpRequest();
+                                // xhr.open('GET', '/', true);
+                                // xhr.responseType = 'json';
+                                // xhr.setRequestHeader('Content-type', 'application/json');
+                                // xhr.send(data);
+
+                                // xhr.onload = function () {
+                                //     if (xhr.status >= 400) {
+                                //         let error = `Something was wrong`;
+                                //         reject(error)
+                                //     } else {
+                                //         resolve(xhr.response);
+                                //     }
+                                // }
+                            }
+                        </script>
                         <div class="main-search-box">
 
                             <div class="main-search-input larger-input">
                                 <div class="row with-forms">
                                     <div class="col-md-5 col-sm-5">
-                                        <select name="disid" id="disid" aria-label="category_search">
+                                        <select name="disid" id="disid" onchange="getLocationId(this)"
+                                            aria-label="category_search">
                                             <option value="55">
                                                 Bagerhat </option>
                                             <option value="40">

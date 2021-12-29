@@ -1,4 +1,4 @@
-const { Property } = require('../models')
+const { Property, User, Tenant } = require('../models')
 
 
 exports.singleGetPropertyController = async (req, res, next) => {
@@ -35,9 +35,14 @@ exports.homeController = async (req, res, next) => {
             .sort('-createdAt')
             .limit(15)
 
-        console.log(properties)
+        const users = await User.find()
+        const totalproperties = await Property.find()
+        const tenants = await Tenant.find()
         res.render('pages/explorer/home', {
-            properties
+            users,
+            properties,
+            totalproperties,
+            tenants
         })
     } catch (err) {
         next(err)
@@ -48,13 +53,13 @@ exports.propertyListing = async (req, res, next) => {
 
     let itemPage = 21
     let skip
-    let currentPage = parseInt(req.query.page)  || 1
-    if(currentPage == 1) {
+    let currentPage = parseInt(req.query.page) || 1
+    if (currentPage == 1) {
         skip = 0
     } else {
-        skip = ( currentPage * itemPage ) - itemPage 
+        skip = (currentPage * itemPage) - itemPage
     }
-    
+
     try {
         const properties = await Property.find({ status: true })
             .populate({
@@ -94,3 +99,10 @@ exports.profileProperty = (req, res) => {
     res.render('pages/explorer/profileProperty', { title: 'Hey', message: 'Hello there!' })
 }
 
+exports.termsAndConditionController = (req, res) => {
+    res.render('pages/explorer/termsPrivacyPolicy', { title: 'Terms & Condition ' })
+}
+
+exports.privacyAndPolicyController = (req, res) => {
+    res.render('pages/explorer/termsPrivacyPolicy', { title: 'Privacy Policy' })
+}

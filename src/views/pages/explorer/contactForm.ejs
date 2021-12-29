@@ -1,11 +1,5 @@
 <%-include('../../partials/head.ejs')%>
 
-<div id="wrapper">
-
-    <%-include('../../partials/navigation.ejs')%>
-
-</div>
-
 <div id="titlebar">
     <div class="container">
         <div class="row">
@@ -13,8 +7,8 @@
                 <h2> Contact </h2>
                 <nav id="breadcrumbs">
                     <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="property-listing-2.html"> Contact</a></li>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/contact"> Contact</a></li>
                     </ul>
                 </nav>
             </div>
@@ -45,7 +39,7 @@
             <section id="contact">
                 <h4 class="headline margin-bottom-35">Contact Form</h4>
                 <div id="contact-message"> </div>
-                <form method="post" action="https://www.thetolet.com/validation/user-action.php" name="contactform"
+                <form method="post" action="/contact" name="contactform"
                     autocomplete="on">
                     <div class="row">
                         <div class="col-md-6">

@@ -1,13 +1,23 @@
-const { User } = require('../../models')
+const { User, Payment } = require('../../models')
 const { validationResult } = require('express-validator')
 const errorFormatter = require('../../utils/validationErrorFormatter')
-const bcrypt = require('bcrypt')
 
 
-exports.dashboardController = (req, res, next) => {
-    res.render('pages/hw/dashboard', {
-        name: req.user.fullname
-    })
+exports.dashboardController = async (req, res, next) => {
+    try {
+        const payments = await Payment.find()
+        let totalPayment = 0
+        payments.map(payment => {
+            totalPayment = totalPayment + payment.amount
+        })
+        // Also need to fine monthly payment amount
+        res.render('pages/hw/dashboard', {
+            totalPayment
+        })
+    } catch (err) {
+        next(err)
+    }
+
 }
 
 exports.myProfileController = (req, res, next) => {
@@ -51,48 +61,4 @@ exports.changeImageController = async (req, res, next) => {
     console.log(req.file)
 }
 
-exports.changePasswordController = (req, res, next) => {
-    res.render('pages/hw/changePassword', {
-        error: {}
-    })
-}
 
-exports.changePasswordPostController = async (req, res, next) => {
-
-    const { oldPassword, confPassword } = req.body;
-
-    const errors = validationResult(req).formatWith(errorFormatter);
-    if (!errors.isEmpty()) {
-        return res.render('pages/hw/changePassword',
-            {
-                error: errors.mapped()
-            });
-    }
-    try {
-
-        bcrypt.compare(oldPassword, req.user.password, async (err, result) => {
-
-            if (err) {
-                next(err)
-            }
-            if (!result) {
-                return res.render('pages/hw/changePassword',
-                    {
-                        error: {
-                            oldPassword: 'Incorrect Password'
-                        },
-                    });
-            } else {
-                const hashPassword = await bcrypt.hash(confPassword, 11);
-                const updatePassword = await User.findByIdAndUpdate(req.user._id, { password: hashPassword })
-                if (updatePassword) {
-                    req.user.password = hashPassword
-                }
-                res.redirect('/hw/dashboard');
-            }
-        })
-
-    } catch (e) {
-        next(e)
-    }
-}

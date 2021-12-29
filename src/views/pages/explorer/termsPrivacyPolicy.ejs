@@ -1,0 +1,27 @@
+<%-include('../../partials/head.ejs')%>
+
+<div id="titlebar">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2> <%= title %> </h2>
+                <nav id="breadcrumbs">
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><%= title %></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row fullwidth-layout">
+        <div class="col-md-offset-5 col-md-4">
+            <h3><%= title %> ....</h3>
+        </div>
+    </div>
+</div>
+
+<%- include('../../partials/footer.ejs')%>
