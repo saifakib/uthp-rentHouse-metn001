@@ -1,4 +1,5 @@
 const { Category, Area } = require('../models')
+const createError = require('http-errors')
 
 exports.changeStatus = async (req, res, next) => {
     try {
@@ -9,6 +10,6 @@ exports.changeStatus = async (req, res, next) => {
             res.redirect(`/admin/${model}/list`)
         }
     } catch (err) {
-        next(err)
+        next(createError(304, err.message))
     }
 }

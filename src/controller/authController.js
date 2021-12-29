@@ -2,7 +2,7 @@ const { User, Profile } = require('../models')
 const bcrypt = require('bcrypt');
 const { validationResult } = require('express-validator');
 const errorFormatter = require('../utils/validationErrorFormatter');
-const Flash = require('../utils/FLash');
+const createError = require('http-errors')
 
 exports.registerGetController = async (req, res, next) => {
     try {
@@ -10,7 +10,7 @@ exports.registerGetController = async (req, res, next) => {
             error: {}, value: {}
         })
     } catch (err) {
-        console.log(err)
+        next(createError(501, "Internal Server Error"))
     }
 }
 
@@ -58,22 +58,22 @@ exports.registerPostController = async (req, res, next) => {
                             })
                             .catch(err => {
                                 console.log(err)
-                                next(err)
+                                next(createError(501, "Internal Implementation Error!!"))
                             })
                     })
                     .catch(err => {
-                        next(err)
+                        next(createError(501, "Internal Implementation Error!!"))
                     })
             })
             .catch(error => {
-                res.json({ error })
+                next(createError(501, "Internal Implementation Error!!"))
             })
 
         req.isloggedIn = true
         //req.flash('success', 'User Account Created !!')
 
     } catch (e) {
-        next(e)
+        next(createError(400, e.message))
     }
 
     res.render('pages/auth/login.ejs', {
@@ -138,7 +138,7 @@ exports.loginPostController = async (req, res, next) => {
         }
     }
     catch (e) {
-        next(e);
+        next(createError(400, e.message))
     }
 };
 
@@ -170,7 +170,7 @@ exports.changePasswordPostController = async (req, res, next) => {
         bcrypt.compare(oldPassword, req.user.password, async (err, result) => {
 
             if (err) {
-                next(err)
+                next(createError(501, "Internal Error!!"))
             }
             if (!result) {
                 return res.render(`pages/${req.user.role}/changePassword`,
@@ -190,6 +190,6 @@ exports.changePasswordPostController = async (req, res, next) => {
         })
 
     } catch (e) {
-        next(e)
+        next(createError(400, e.message))
     }
 }

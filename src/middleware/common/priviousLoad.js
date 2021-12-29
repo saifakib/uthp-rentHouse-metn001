@@ -1,4 +1,5 @@
 const { Category, Location } = require('../../models')
+const createError = require('http-errors')
 
 module.exports = () => {
     return async (req, res, next) => {
@@ -12,7 +13,7 @@ module.exports = () => {
             next()
 
         } catch (err) {
-            next(err)
+            next(createError(400, "Internal Server Error"))
         }
     }
 

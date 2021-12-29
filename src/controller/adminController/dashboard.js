@@ -1,7 +1,7 @@
-const { User, Profile, Location, Property, Tenant } = require('../../models')
+const { User, Location, Property, Tenant } = require('../../models')
 const { validationResult } = require('express-validator')
 const errorFormatter = require('../../utils/validationErrorFormatter')
-
+const createError = require('http-errors')
 
 exports.dashboardController = async (req, res, next) => {
     try {
@@ -30,7 +30,7 @@ exports.dashboardController = async (req, res, next) => {
             totalAreas: areasC || 0
         })
     } catch (err) {
-        next(err)
+        next(createError(204, err.message))
     }
 }
 
@@ -49,13 +49,12 @@ exports.getAllPropertyController = async (req, res, next) => {
                 path: 'category',
                 select: 'name'
             })
-        console.log(properties)
         res.render('pages/admin/propertyList', {
             properties
         })
     }
     catch (err) {
-        next(err)
+        next(createError(204, err.message))
     }
 }
 
@@ -68,7 +67,6 @@ exports.myProfileController = (req, res, next) => {
 exports.updateProfileController = async (req, res, next) => {
 
     const { fullname, mobile, email } = req.body
-    console.log(req.body)
 
     const errors = validationResult(req).formatWith(errorFormatter);
     if (!errors.isEmpty()) {
@@ -89,10 +87,10 @@ exports.updateProfileController = async (req, res, next) => {
                 res.redirect('/admin/profile')
             })
             .catch(err => {
-                next(err)
+                next(createError(405, err.message))
             })
     } catch (err) {
-        next(err)
+        next(createError(304, err.message))
     }
 }
 
@@ -101,6 +99,5 @@ exports.tenantGetController = async (req, res, next) => {
         .populate({
             path: 'house'
         })
-    console.log(tenants)
     res.render('pages/admin/tenantList', { tenants })
 }

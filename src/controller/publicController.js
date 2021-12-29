@@ -1,5 +1,5 @@
 const { Property, User, Tenant } = require('../models')
-
+const createError = require('http-errors')
 
 exports.singleGetPropertyController = async (req, res, next) => {
     const { post_id } = req.params
@@ -45,7 +45,7 @@ exports.homeController = async (req, res, next) => {
             tenants
         })
     } catch (err) {
-        next(err)
+        next(createError(400, err.message))
     }
 }
 
@@ -79,7 +79,7 @@ exports.propertyListing = async (req, res, next) => {
             currentPage
         })
     } catch (err) {
-        next(err)
+        next(createError(400, err.message))
     }
 }
 

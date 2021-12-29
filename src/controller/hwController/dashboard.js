@@ -1,7 +1,7 @@
 const { User, Payment } = require('../../models')
 const { validationResult } = require('express-validator')
 const errorFormatter = require('../../utils/validationErrorFormatter')
-
+const createError = require('http-errors')
 
 exports.dashboardController = async (req, res, next) => {
     try {
@@ -15,7 +15,7 @@ exports.dashboardController = async (req, res, next) => {
             totalPayment
         })
     } catch (err) {
-        next(err)
+        next(createError(400, err.message))
     }
 
 }
@@ -29,7 +29,6 @@ exports.myProfileController = (req, res, next) => {
 exports.updateProfileController = async (req, res, next) => {
 
     const { fullname, mobile, email } = req.body
-    console.log(req.body)
 
     const errors = validationResult(req).formatWith(errorFormatter);
     if (!errors.isEmpty()) {
@@ -50,10 +49,10 @@ exports.updateProfileController = async (req, res, next) => {
                 res.redirect('/hw/profile/my')
             })
             .catch(err => {
-                next(err)
+                next(createError(205, err.message))
             })
     } catch (err) {
-        next(err)
+        next(createError(304, err.message))
     }
 }
 
