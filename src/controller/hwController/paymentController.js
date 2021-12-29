@@ -1,4 +1,5 @@
 const { Payment, Tenant } = require('../../models')
+const createError = require('http-errors')
 
 exports.paymentCreateGetController = (req, res) => {
     res.render('pages/hw/paymentCreate')
@@ -33,7 +34,6 @@ exports.paymentCreatePostController = async (req, res, next) => {
                 let totalPaymentAmount = 0
                 let dues = 0
                 totalPaymentList.map(tp => {
-                    console.log(tp.amount)
                     totalPaymentAmount = totalPaymentAmount + tp.amount
                 })
                 dues = (totalTargetPayment - totalPaymentAmount)
@@ -47,15 +47,15 @@ exports.paymentCreatePostController = async (req, res, next) => {
                         res.redirect('/hw/payment/list')
                     })
                     .catch(error => {
-                        next(error)
+                        next(createError(205, error.message))
                     })
             })
             .catch(error => {
-                next(error)
+                next(createError(400, error.message))
             })
 
     } catch (e) {
-        next(e)
+        next(createError(400, e.message))
     }
 }
 
@@ -73,7 +73,7 @@ exports.paymentListController = async (req, res, next) => {
         })
     }
     catch (err) {
-        next(err)
+        next(createError(204, err.message))
     }
 
 }

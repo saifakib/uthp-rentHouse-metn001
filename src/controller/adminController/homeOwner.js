@@ -1,4 +1,5 @@
 const { User } = require('../../models')
+const createError = require('http-errors')
 
 exports.homeOwnerGetController = async (req, res, next) => {
     try {
@@ -10,7 +11,7 @@ exports.homeOwnerGetController = async (req, res, next) => {
         res.render('pages/admin/homeOwnerList', {
             users
         });
-    } catch (e) {
-        next(e)
+    } catch (err) {
+        next(createError(204, err.message))
     }
 }

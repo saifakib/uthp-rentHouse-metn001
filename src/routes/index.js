@@ -3,7 +3,8 @@ const authRoute = require('./authRoute')
 const adminRoute = require('./adminRoute')
 const hwRoute = require('./hwRoute')
 const { homeController, contactGetController, propertyListing, searchPropertyListing, profile,
-    profileProperty, singleGetPropertyController } = require('../controller/publicController')
+    profileProperty, singleGetPropertyController,
+    termsAndConditionController, privacyAndPolicyController } = require('../controller/publicController')
 
 const { requireRole, authToRedirect } = require('../middleware/auth')
 const homeOwnerMiddleware = require('../middleware/homeOwner')
@@ -12,7 +13,7 @@ const homeOwnerMiddleware = require('../middleware/homeOwner')
 router.use('/auth', authRoute)
 router.get('/dashboard', authToRedirect)
 router.use('/admin', [requireRole(['admin'])], adminRoute)
-router.use('/hw',[requireRole(['hw'])], homeOwnerMiddleware(), hwRoute)
+router.use('/hw', [requireRole(['hw'])], homeOwnerMiddleware(), hwRoute)
 
 router.get('/', homeController)
 router.get('/profile', profile)
@@ -22,5 +23,8 @@ router.get('/contact', contactGetController)
 router.get('/property-listing', propertyListing)
 router.get('/search-property-listing', searchPropertyListing)
 router.get('/:location/:area/:post_id/details', singleGetPropertyController)
+
+router.get('/terms', termsAndConditionController)
+router.get('/privacy-policy', privacyAndPolicyController)
 
 module.exports = router;

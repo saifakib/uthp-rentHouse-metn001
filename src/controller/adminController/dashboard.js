@@ -1,17 +1,19 @@
-const { User, Profile, Location, Property } = require('../../models')
+const { User, Location, Property, Tenant } = require('../../models')
 const { validationResult } = require('express-validator')
 const errorFormatter = require('../../utils/validationErrorFormatter')
-const bcrypt = require('bcrypt');
-
+const createError = require('http-errors')
 
 exports.dashboardController = async (req, res, next) => {
     try {
-        const profiles = await Profile.find()
+        const users = await User.find({ role: 'hw' })
+            .populate({
+                path: 'profile'
+            })
         let propertiesC = 0
         let tenantC = 0
-        profiles.map((profile) => {
-            propertiesC += profile.properties.length
-            tenantC += profile.tenants.length
+        users.map((user) => {
+            propertiesC += user.profile.properties.length
+            tenantC += user.profile.tenants.length
         })
 
         const locations = await Location.find()
@@ -21,39 +23,38 @@ exports.dashboardController = async (req, res, next) => {
         })
 
         res.render('pages/admin/dashboard', {
-            profiles,
+            users,
             locations,
             totalProperties: propertiesC || 0,
             totalTenants: tenantC || 0,
             totalAreas: areasC || 0
         })
     } catch (err) {
-        next(err)
+        next(createError(204, err.message))
     }
 }
 
 exports.getAllPropertyController = async (req, res, next) => {
     try {
         const properties = await Property.find()
-        .populate({
-            path: 'homeOwner_id',
-            select: 'fullname'
-        })
-        .populate({
-            path: 'area_id',
-            select: 'name'
-        })
-        .populate({
-            path: 'category',
-            select: 'name'
-        })
-        console.log(properties)
+            .populate({
+                path: 'homeOwner_id',
+                select: 'fullname'
+            })
+            .populate({
+                path: 'area_id',
+                select: 'name'
+            })
+            .populate({
+                path: 'category',
+                select: 'name'
+            })
         res.render('pages/admin/propertyList', {
             properties
         })
     }
     catch (err) {
-        next(err)
+        next(createError(204, err.message))
     }
 }
 
@@ -66,7 +67,6 @@ exports.myProfileController = (req, res, next) => {
 exports.updateProfileController = async (req, res, next) => {
 
     const { fullname, mobile, email } = req.body
-    console.log(req.body)
 
     const errors = validationResult(req).formatWith(errorFormatter);
     if (!errors.isEmpty()) {
@@ -84,58 +84,20 @@ exports.updateProfileController = async (req, res, next) => {
             }
         })
             .then(() => {
-                res.redirect('/admin/profile/my')
+                res.redirect('/admin/profile')
             })
             .catch(err => {
-                next(err)
+                next(createError(405, err.message))
             })
     } catch (err) {
-        next(err)
+        next(createError(304, err.message))
     }
 }
 
-exports.changePasswordController = (req, res, next) => {
-    res.render('pages/admin/changePassword', {
-        error: {}
-    })
-}
-
-exports.changePasswordPostController = async (req, res, next) => {
-
-    const { oldPassword, confPassword } = req.body;
-
-    const errors = validationResult(req).formatWith(errorFormatter);
-    if (!errors.isEmpty()) {
-        return res.render('pages/admin/changePassword',
-            {
-                error: errors.mapped()
-            });
-    }
-    try {
-
-        bcrypt.compare(oldPassword, req.user.password, async (err, result) => {
-
-            if (err) {
-                next(err)
-            }
-            if (!result) {
-                return res.render('pages/admin/changePassword',
-                    {
-                        error: {
-                            oldPassword: 'Incorrect Password'
-                        },
-                    });
-            } else {
-                const hashPassword = await bcrypt.hash(confPassword, 11);
-                const updatePassword = await User.findByIdAndUpdate(req.user._id, { password: hashPassword })
-                if (updatePassword) {
-                    req.user.password = hashPassword
-                }
-                res.redirect('/admin/dashboard');
-            }
+exports.tenantGetController = async (req, res, next) => {
+    const tenants = await Tenant.find()
+        .populate({
+            path: 'house'
         })
-
-    } catch (e) {
-        next(e)
-    }
+    res.render('pages/admin/tenantList', { tenants })
 }

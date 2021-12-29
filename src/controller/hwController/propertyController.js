@@ -1,6 +1,5 @@
 const { Property, Location, Profile, Category, Area } = require('../../models')
-const { validationResult } = require('express-validator')
-const errorFormatter = require('../../utils/validationErrorFormatter')
+const createError = require('http-errors')
 
 exports.propertyCreateGetController = async (req, res) => {
     const locations = await Location.find()
@@ -72,11 +71,11 @@ exports.propertyCreatePostController = async (req, res, next) => {
                 res.redirect('/hw/dashboard');
             })
             .catch(error => {
-                next(error)
+                next(createError(205, error.message))
             })
 
     } catch (e) {
-        next(e)
+        next(createError(400, e.message))
     }
 }
 
@@ -94,7 +93,7 @@ exports.propertyListController = async (req, res, next) => {
             properties
         })
     } catch (e) {
-        next(e)
+        next(createError(204, e.message))
     }
 }
 
@@ -108,7 +107,7 @@ exports.propertyUpdatePageController = async (req, res, next) => {
             }
         })
     } catch (err) {
-        next(err)
+        next(createError(406, err.message))
     }
 }
 
@@ -172,20 +171,20 @@ exports.propertyUpdateController = async (req, res, next) => {
                                     res.redirect('/hw/property/list')
                                 })
                                 .catch(error => {
-                                    next(error)
+                                    next(createError(304, error.message))
                                 })
                         })
                         .catch(error => {
-                            next(error)
+                            next(createError(304, error.message))
                         })
                 })
                 .catch(error => {
-                    next(error)
+                    next(createError(304, error.message))
                 })
         }
 
     } catch (err) {
-        next(err)
+        next(createError(400, err.message))
     }
 }
 
@@ -197,6 +196,6 @@ exports.changeStatusController = async (req, res, next) => {
             res.redirect(`/hw/property/list`)
         }
     } catch (err) {
-        next(err)
+        next(createError(304, err.message))
     }
 }

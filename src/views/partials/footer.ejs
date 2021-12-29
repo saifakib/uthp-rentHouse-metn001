@@ -1,9 +1,9 @@
 <div id="footer">
     <div class="container">
+        <% if (!isLoggedIn) { %>
         <div class="row">
-            <div class="col-md-4 col-sm-12">
-                <img class="footer-logo" src="" alt="Thetolet Footer Logo" height="74"
-                    width="220"><br><br>
+            <div class="col-md-5 col-sm-12">
+                <img class="footer-logo" src="" alt="Find House Logo" height="74" width="220"><br><br>
                 <p>অনলাইনে বাসা খোঁজার জন্য বাংলাদেশের সর্বোত্তম জায়গা । ব্যস্ততম শহরে আপনার হাতের
                     নাগালেই থাক বাসা/বাড়ি।</p>
             </div>
@@ -11,21 +11,21 @@
                 <h4>Helpful Links</h4>
                 <ul class="footer-links">
                     <li>
-                        <h5><a href="login-register.html">Login | Register</a></h5>
+                        <h5><a href="/auth/login">Login</a></h5>
                     </li>
                     <li>
-                        <h5><a href="submit.html">Submit Free Ads</a></h5>
+                        <h5><a href="/auth/register">Register</a></h5>
                     </li>
                     <li>
-                        <h5><a href="terms.html">Terms & Condition </a></h5>
+                        <h5><a href="/terms">Terms & Condition </a></h5>
                     </li>
                     <li>
-                        <h5><a href="privacy-policy.html">Privacy Policy </a></h5>
+                        <h5><a href="/privacy-policy">Privacy Policy </a></h5>
                     </li>
                 </ul>
                 <div class="clearfix"></div>
             </div>
-            <div class="col-md-4  col-sm-6 col-xs-6">
+            <div class="col-md-3  col-sm-6 col-xs-6">
                 <h4>Contact Us</h4>
                 <ul class="footer-links">
                     <li>
@@ -33,13 +33,14 @@
                                 Us</a></h5>
                     </li>
                     <li>
-                        <h5><a target="_blank" href="https://www.linkedin.com/company/thetolet">Linkedin</a>
+                        <h5><a target="_blank" href="https://www.facebook.com">Facebook</a>
                         </h5>
                     </li>
 
                 </ul>
             </div>
         </div>
+        <% } %>
 
         <div class="row">
             <div class="col-md-12">

@@ -1,4 +1,4 @@
-
+const createError = require('http-errors')
 const { User } = require('../models')
 
 
@@ -14,9 +14,9 @@ const bindUserWithRequest = () => {
             req.user = user
             next()
 
-        } catch (er) {
+        } catch (err) {
             console.log(err)
-            next(err)
+            next(createError(501, err.message))
         }
     }
 }
@@ -44,18 +44,10 @@ const requireRole = (roles) => {
             if (req.user.role && roles.includes(req.user.role)) {
                 next()
             } else {
-                res.status(401).json({
-                    errors: {
-                        msg: "You are not authorized!",
-                    },
-                });
+                next(createError(401, "You are not authorized!"))
             }
         } else {
-            res.status(401).json({
-                errors: {
-                    msg: "You are not authorized!",
-                },
-            });
+            next(createError(401, "You are not authorized!"))
         }
 
     }
@@ -63,7 +55,6 @@ const requireRole = (roles) => {
 
 
 const authToRedirect = (req, res, next) => {
-    console.log(res.locals.user.role)
     return req.session.isloggedIn ?
         res.locals.user.role == 'admin' ?
             res.redirect('admin/dashboard') : res.redirect('hw/dashboard') : res.redirect('/auth/login')

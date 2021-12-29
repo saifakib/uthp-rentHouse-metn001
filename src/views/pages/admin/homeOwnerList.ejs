@@ -1,10 +1,5 @@
 <%-include('../../partials/head.ejs')%>
 
-<div id="wrapper">
-
-    <%-include('../../partials/navigation.ejs')%>
-
-</div>
 <div id="titlebar">
     <div class="container">
         <div class="row">
@@ -13,7 +8,7 @@
                 <nav id="breadcrumbs">
                     <ul>
                         <li><a href="/"> Home</a></li>
-                        <li> Admin Dashboard </li>
+                        <li><a href="/admin/dashboard"> Admin Dashboard</a></li>
                         <li> Home Owner List </li>
                     </ul>
                 </nav>
@@ -59,7 +54,7 @@
             </table>
         </div>
 
-        <%- include('./sideBar.ejs')%>
+        <%- include('../../partials/sideBar.ejs')%>
 
     </div>
 </div>

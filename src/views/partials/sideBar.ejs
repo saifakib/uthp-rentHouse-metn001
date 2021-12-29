@@ -1,0 +1,55 @@
+<div class="col-md-3 make-me-sticky" style="margin-left: 50px">
+    <div class="sidebar left">
+        <div class="my-account-nav-container">
+            <ul class="my-account-nav">
+                <li class="sub-nav-title"> Manage Account</li>
+                <li><a href="/<%= locals.user.role %>/profile"><i class="fa fa-user"></i> My
+                        Profile</a></li>
+                <li><a href="/<%= locals.user.role %>/profile/password-change"><i class="fa fa-lock"></i>
+                        Change Password</a></li>
+            </ul>
+            <ul class="my-account-nav">
+                <li><a href="/<%= locals.user.role %>/dashboard"><i class="fa fa-globe"></i>
+                        <% if(locals.user.role == 'admin') { %> Admin <% } else { %> My <% } %>
+                        Dashboard</a></li>
+            </ul>
+            <% if(locals.user.role == 'admin') { %>
+            <ul class="my-account-nav">
+                <li><a href="/<%= locals.user.role %>/category/list"><i class="fa fa-home"></i>Category List</a></li>
+                <li><a href="/<%= locals.user.role %>/category/create"><i class="fa fa-plus-circle"></i>Add New
+                        Category</a></li>
+            </ul>
+            <ul class="my-account-nav">
+                <li><a href="/<%= locals.user.role %>/location/list"><i class=" fa fa-th-list"></i>District List</a>
+                </li>
+                <li><a href="/<%= locals.user.role %>/area/list"><i class=" fa fa-th-list"></i>Area List</a></li>
+                <li><a href="/<%= locals.user.role %>/location/create"><i class="fa fa-plus-circle"></i>
+                        Add New District</a></li>
+                <li><a href="/<%= locals.user.role %>/area/create"><i class="fa fa-plus-circle"></i>
+                        Add New Area</a></li>
+            </ul>
+            <% } else { %>
+            <ul class="my-account-nav">
+                <li><a href="/<%= locals.user.role %>/property/list"><i class="fa fa-home"></i>My Properties</a></li>
+                <li><a href="/<%= locals.user.role %>/property/create"><i class="fa fa-plus-circle"></i>Submit A
+                        Proerty</a>
+                </li>
+            </ul>
+            <ul class="my-account-nav">
+                <li><a href="/<%= locals.user.role %>/tenant/list"><i class="fa fa-home"></i>My Tenants</a></li>
+                <li><a href="/<%= locals.user.role %>/tenant/create"><i class="fa fa-plus-circle"></i>New Tenant</a>
+                </li>
+            </ul>
+            <ul class="my-account-nav">
+                <li><a href="/<%= locals.user.role %>/payment/list"><i class="fa fa-home"></i>All Payments</a></li>
+                <li><a href="/<%= locals.user.role %>/payment/create"><i class="fa fa-plus-circle"></i>New Payment</a>
+                </li>
+            </ul>
+            <% } %>
+            <ul class="my-account-nav">
+                <li><a href="/auth/logout"><i class="fa fa-sign-out"></i>
+                        Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,10 +1,5 @@
 <%-include('../../partials/head.ejs')%>
 
-<div id="wrapper">
-
-    <%-include('../../partials/navigation.ejs')%>
-
-</div>
 <div id="titlebar">
     <div class="container">
         <div class="row">
@@ -47,7 +42,7 @@
                     </div>
                 </div>
                 <div class="col-md-8 my-profile">
-                    <form method="post" action="/hw/profile/update"> <label> Full Name</label>
+                    <form method="post" action="/admin/profile/update"> <label> Full Name</label>
                         <input value="<%= locals.user.fullname %>" name="fullname" type="text">
                         <div class="invalid-feedback"><b><%= error.fullname && error.fullname %></b></div>
                         <label> Contact Number</label>
@@ -61,7 +56,7 @@
                 </div>
             </div>
         </div>
-        <%- include('./sideBar.ejs')%>
+        <%- include('../../partials/sideBar.ejs')%>
     </div>
 </div>
 

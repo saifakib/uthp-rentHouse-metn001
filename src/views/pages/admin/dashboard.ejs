@@ -1,10 +1,5 @@
 <%-include('../../partials/head.ejs')%>
 
-<div id="wrapper">
-
-    <%-include('../../partials/navigation.ejs')%>
-
-</div>
 <div id="titlebar">
     <div class="container">
         <div class="row">
@@ -12,7 +7,7 @@
                 <h2> Admin Dashboard </h2>
                 <nav id="breadcrumbs">
                     <ul>
-                        <li><a href="https://www.thetolet.com/en/"> Home</a></li>
+                        <li><a href="/"> Home</a></li>
                         <li> Admin Dashboard </li>
                     </ul>
                 </nav>
@@ -37,7 +32,7 @@
                             </h4>
                         </div>
                     </td>
-                    <td class="title"><%= profiles.length %></td>
+                    <td class="title"><%= users.length %></td>
                     <td class="title">
                         <a href="/admin/homeowner/list"></i> VIEW</a>
                     </td>
@@ -72,6 +67,19 @@
                     <td class="title-container">
                         <div class="title">
                             <h4><a href="/admin/location/list">
+                                    Categories</a>
+                            </h4>
+                        </div>
+                    </td>
+                    <td class="title"><%= locals.categories.length %></td>
+                    <td class="title">
+                        <a href="/admin/category/list"></i> VIEW</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title-container">
+                        <div class="title">
+                            <h4><a href="/admin/location/list">
                                     District</a>
                             </h4>
                         </div>
@@ -97,7 +105,7 @@
             </table>
         </div>
 
-        <%- include('./sideBar.ejs')%>
+        <%- include('../../partials/sideBar.ejs')%>
 
     </div>
 </div>

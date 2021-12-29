@@ -1,4 +1,5 @@
 const uploader = require("../utils/singleUploader")
+const createError = require('http-errors')
 
 function profileAvatarUpload(req, res, next) {
     const upload = uploader(
@@ -11,7 +12,7 @@ function profileAvatarUpload(req, res, next) {
     // call the middleware function
     upload.single('pic')(req, res, (err) => {
         if (err) {
-            next(err)
+            next(createError(204, err.message))
         } else {
             next();
         }

@@ -1,6 +1,7 @@
 const { Tenant, Property, Location, Profile, Category, Area } = require('../../models')
 const { validationResult } = require('express-validator')
 const errorFormatter = require('../../utils/validationErrorFormatter')
+const createError = require('http-errors')
 
 exports.tenantCreateGetController = (req, res) => {
     res.render('pages/hw/tenantCreate', {
@@ -47,11 +48,11 @@ exports.tenantCreatePostController = async (req, res, next) => {
                 res.redirect('/hw/tenant/list')
             })
             .catch(error => {
-                next(error)
+                next(createError(400, error.message))
             })
 
     } catch (e) {
-        next(e)
+        next(createError(400, e.message))
     }
 }
 
@@ -70,7 +71,7 @@ exports.tenantUpdatePageController = async (req, res, next) => {
             }
         })
     } catch (err) {
-        next(err)
+        next(createError(400, err.message))
     }
 }
 
@@ -106,20 +107,20 @@ exports.tenantUpdateController = async (req, res, next) => {
                                     res.redirect('/hw/tenant/list')
                                 })
                                 .catch(error => {
-                                    next(error)
+                                    next(createError(304, error.message))
                                 })
                         })
                         .catch(error => {
-                            next(error)
+                            next(createError(304, error.message))
                         })
                 })
                 .catch(error => {
-                    next(error)
+                    next(createError(304, error.message))
                 })
         }
 
     } catch (err) {
-        next(err)
+        next(createError(500, err.message))
     }
 }
 
@@ -131,6 +132,6 @@ exports.removeController = async (req, res, next) => {
             res.redirect(`/hw/tenant/list`)
         }
     } catch (err) {
-        next(err)
+        next(createError(500, err.message))
     }
 }

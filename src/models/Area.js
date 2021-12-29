@@ -15,6 +15,10 @@ const areaSchema = new Schema(
             type: String,
             required: true
         },
+        status: {
+            type: Boolean,
+            default: true
+        },
         properties: [
             {
                 type: Schema.Types.ObjectId,

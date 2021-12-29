@@ -1,6 +1,7 @@
 const { Category } = require('../../models')
 const { validationResult } = require('express-validator')
 const errorFormatter = require('../../utils/validationErrorFormatter')
+const createError = require('http-errors')
 
 exports.categoryCreateGetController = (req, res) => {
     res.render('pages/admin/categoryCreate', {
@@ -10,7 +11,7 @@ exports.categoryCreateGetController = (req, res) => {
 
 exports.categoryCreatePostController = async (req, res, next) => {
 
-    const { category, confirm } = req.body;
+    const { category } = req.body;
 
     const errors = validationResult(req).formatWith(errorFormatter);
     if (!errors.isEmpty()) {
@@ -36,13 +37,11 @@ exports.categoryCreatePostController = async (req, res, next) => {
                 console.log(savedcategory)
             })
             .catch(error => {
-                console.log(error)
-                next(error)
+                next(createError(403, error.message))
             })
 
     } catch (e) {
-        console.log(e)
-        next(e)
+        next(createError(400, e.message))
     }
 
     res.redirect('/admin/category/list');
@@ -55,10 +54,9 @@ exports.categoryListController = async (req, res, next) => {
         const categories = await Category.find({})
         res.render('pages/admin/categoryList', {
             categories: categories
-            //flashMessage: Flash.getMessage(req)
         });
     } catch (e) {
-        next(e)
+        next(createError(204, e.message))
     }
 }
 
@@ -72,7 +70,7 @@ exports.categoryUpdatePageController = async (req, res, next) => {
             }
         })
     } catch (err) {
-        next(err)
+        next(createError(406, err.message))
     }
 }
 
@@ -83,6 +81,6 @@ exports.categoryUpdateController = async (req, res, next) => {
             res.redirect('/admin/category/list')
         }
     } catch (err) {
-        next(err)
+        next(createError(304, err.message))
     }
 }
