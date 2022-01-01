@@ -29,7 +29,7 @@
                                 <li><a href='/'><%= loc.name %></a>
                                     <ul class="menu-overlay">
                                         <% for(let area of loc.areas) {%>
-                                        <li><a href='/'><%= area.name %></a></li>
+                                        <li><a href='/<%= loc.name %>/<%= area.name %>/<%= area._id %>'><%= area.name %></a></li>
                                         <% } %>
                                     </ul>
                                 </li>
@@ -39,7 +39,7 @@
                         <li><a href="#">Category</a>
                             <ul>
                                 <% for(let cat of locals.categories) {%>
-                                <li><a href='/'><%= cat.name %></a></li>
+                                <li><a href='/<%= cat.name %>'><%= cat.name %></a></li>
                                 <% } %>
                             </ul>
                         </li>
