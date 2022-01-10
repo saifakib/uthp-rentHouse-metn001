@@ -37,9 +37,9 @@
                     </a>
                     <div class="listing-content">
                         <div class="listing-title">
-                            <h4 class="two-line"><a href="/"><%= property.category.name %>
+                            <h4 class="two-line"><a href="/<%= property.area_id.location_name %>/<%= property.area_id.name %>/<%= property.post_id %>/details"><%= property.category.name %>
                                     Tolet From November</a></h4>
-                            <a href="/"><i class="fa fa-map-marker"></i> <%= property.area_id.name %>,
+                            <a href="/<%= property.area_id.location_name %>/<%= property.area_id.name %>/<%= property.post_id %>/details"><i class="fa fa-map-marker"></i> <%= property.area_id.name %>,
                                 <%= property.area_id.location_name %></a>
                         </div>
                         <ul class="listing-details">

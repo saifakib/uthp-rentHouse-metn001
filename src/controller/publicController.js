@@ -1,26 +1,31 @@
-const { Property, User, Tenant } = require('../models')
+const { Category, Property, User, Tenant, Area } = require('../models')
 const createError = require('http-errors')
 
 exports.singleGetPropertyController = async (req, res, next) => {
-    const { post_id } = req.params
-    const property = await Property.findOne({ post_id: post_id })
-        .populate({
-            path: 'homeOwner_id',
-            select: 'fullname email mobile' //avatar
+    try {
+        const { post_id } = req.params
+        const property = await Property.findOne({ post_id: post_id })
+            .populate({
+                path: 'homeOwner_id',
+                select: 'fullname email mobile' //avatar
+            })
+            .populate({
+                path: 'category',
+                select: 'name'
+            })
+            .populate({
+                path: 'area_id',
+                select: 'name location_name'
+            })
+        res.render('pages/explorer/singleProperty', {
+            property
         })
-        .populate({
-            path: 'category',
-            select: 'name'
-        })
-        .populate({
-            path: 'area_id',
-            select: 'name location_name'
-        })
-    console.log(property)
-    res.render('pages/explorer/singleProperty', {
-        property
-    })
+    }
+    catch (err) {
+        next(createError(400, "Internal Server Error"))
+    }
 }
+
 exports.homeController = async (req, res, next) => {
     try {
         const properties = await Property.find({ status: true })
@@ -87,6 +92,64 @@ exports.searchPropertyListing = (req, res) => {
     res.render('pages/explorer/searchProperty', { title: 'Hey', message: 'Hello there!' })
 }
 
+exports.areaPropertyListing = async (req, res, next) => {
+    try {
+        const properties = await Property.find({ area_id: req.params.id, status: true })
+            .populate({
+                path: 'homeOwner_id',
+                select: 'fullname email mobile' //avatar
+            })
+            .populate({
+                path: 'category',
+                select: 'name'
+            })
+            .populate({
+                path: 'area_id',
+                select: 'name location_name location_id'
+            })
+            .sort('-createdAt')
+        if(properties.length == 0) next(createError(204))
+        res.render('pages/explorer/searchProperty', {
+            title: `${req.params.area} Area`,
+            isCat: 0,
+            location: `${req.params.location}`,
+            area: `${req.params.area}`,
+            properties
+        })
+    } catch (err) {
+        next(createError(400, "Internal Server Error"))
+    }
+}
+
+exports.categoryPropertyListing = async (req, res, next) => {
+    try {
+        const category = await Category.findOne({ name: req.params.category })
+        const properties = await Property.find({ status: true, category: category._id })
+            .populate({
+                path: 'homeOwner_id',
+                select: 'fullname email mobile' //avatar
+            })
+            .populate({
+                path: 'category',
+                select: 'name'
+            })
+            .populate({
+                path: 'area_id',
+                select: 'name location_name location_id'
+            })
+            .sort('-createdAt')
+        if(properties.length == 0) next(createError(204))
+        res.render('pages/explorer/searchProperty', {
+            title: `${req.params.category} Space`,
+            isCat: 1,
+            category: `${req.params.category}`,
+            properties
+        })
+    } catch (err) {
+        next(createError(400))
+    }
+}
+
 exports.contactGetController = (req, res) => {
     res.render('pages/explorer/contactForm', { title: 'Hey', message: 'Hello there!' })
 }
@@ -105,4 +168,20 @@ exports.termsAndConditionController = (req, res) => {
 
 exports.privacyAndPolicyController = (req, res) => {
     res.render('pages/explorer/termsPrivacyPolicy', { title: 'Privacy Policy' })
+}
+
+
+exports.singleGetAreaController = async (req, res) => {
+    try {
+        const areas = await Area.findById(req.params.id)
+        if (areas) {
+            res.json({
+                areas
+            })
+        }
+    }
+    catch (err) {
+        console.log(err)
+        next(createError(400, err.message))
+    }
 }
