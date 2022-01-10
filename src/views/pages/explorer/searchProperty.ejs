@@ -8,8 +8,12 @@
                 <nav id="breadcrumbs">
                     <ul>
                         <li><a href="/">Home</a></li>
-                        <li> <%= location %></li>
-                        <li> <%= area %></li>
+                        <% if(isCat) { %>
+                            <li><%= category %></li>
+                        <% } else { %>
+                            <li> <%= location %></li>
+                            <li> <%= area %></li>
+                        <% } %>
                     </ul>
                 </nav>
             </div>
@@ -38,10 +42,14 @@
                     </a>
                     <div class="listing-content">
                         <div class="listing-title">
-                            <h4 class="two-line"><a href="/<%= property.area_id.location_name %>/<%= property.area_id.name %>/<%= property.post_id %>/details""><%= property.category.name %>
-                                    Tolet From November</a></h4>
-                            <a href="/<%= property.area_id.location_name %>/<%= property.area_id.name %>/<%= property.post_id %>/details""><i class="fa fa-map-marker"></i> <%= area %>,
-                                <%= location %></a>
+                            <h4 class="two-line"><a
+                                    href="/<%= property.area_id.location_name %>/<%= property.area_id.name %>/<%= property.post_id %>/details""><%= property.category.name %>
+                                    Tolet From
+                                    <% let month = [" ","January","February","March","April","May","June","July","August","September","October","November","December"] %>
+                                    <%= month[property.month_need_from]%></a></h4>
+                            <a href="/<%= property.area_id.location_name %>/<%= property.area_id.name %>/<%= property.post_id %>/details"">
+                                    <i class="fa fa-map-marker"></i> <%= property.area_id.name %>,
+                                    <%= property.area_id.location_name %></a>
                         </div>
                         <ul class="listing-details">
                             <li><i class="fa fa-bed"></i> <%= property.bedRoom %> Bedroom</li>

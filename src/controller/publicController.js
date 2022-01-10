@@ -1,4 +1,4 @@
-const { Property, User, Tenant, Area } = require('../models')
+const { Category, Property, User, Tenant, Area } = require('../models')
 const createError = require('http-errors')
 
 exports.singleGetPropertyController = async (req, res, next) => {
@@ -108,8 +108,10 @@ exports.areaPropertyListing = async (req, res, next) => {
                 select: 'name location_name location_id'
             })
             .sort('-createdAt')
+        if(properties.length == 0) next(createError(204))
         res.render('pages/explorer/searchProperty', {
             title: `${req.params.area} Area`,
+            isCat: 0,
             location: `${req.params.location}`,
             area: `${req.params.area}`,
             properties
@@ -121,11 +123,31 @@ exports.areaPropertyListing = async (req, res, next) => {
 
 exports.categoryPropertyListing = async (req, res, next) => {
     try {
-
+        const category = await Category.findOne({ name: req.params.category })
+        const properties = await Property.find({ status: true, category: category._id })
+            .populate({
+                path: 'homeOwner_id',
+                select: 'fullname email mobile' //avatar
+            })
+            .populate({
+                path: 'category',
+                select: 'name'
+            })
+            .populate({
+                path: 'area_id',
+                select: 'name location_name location_id'
+            })
+            .sort('-createdAt')
+        if(properties.length == 0) next(createError(204))
+        res.render('pages/explorer/searchProperty', {
+            title: `${req.params.category} Space`,
+            isCat: 1,
+            category: `${req.params.category}`,
+            properties
+        })
     } catch (err) {
-        next(createError(400, "Internal Server Error"))
+        next(createError(400))
     }
-    res.render('pages/explorer/searchProperty', { title: 'Hey', message: 'Hello there!' })
 }
 
 exports.contactGetController = (req, res) => {
