@@ -187,15 +187,3 @@ exports.propertyUpdateController = async (req, res, next) => {
         next(createError(400, err.message))
     }
 }
-
-exports.changeStatusController = async (req, res, next) => {
-    try {
-
-        let changes = await Property.findByIdAndUpdate(req.query.id, { status: !req.query.status })
-        if (changes) {
-            res.redirect(`/hw/property/list`)
-        }
-    } catch (err) {
-        next(createError(304, err.message))
-    }
-}

@@ -103,10 +103,14 @@ exports.areaCreateGetController = async (req, res, next) => {
 exports.areaCreatePostController = async (req, res, next) => {
 
     const { district_id, area } = req.body;
+    console.log(district_id)
+    console.log(area)
 
     try {
         let location = await Location.findById(district_id)
+        console.log(location)
         let find = await Area.findOne({ name: area }, { location_id: district_id })
+        console.log(`Find: ${find}`)
         if (find) {
             const districts = await Location.find()
             res.render('pages/admin/areaCreate',
@@ -127,12 +131,14 @@ exports.areaCreatePostController = async (req, res, next) => {
 
             await newArea.save()
                 .then(async (newSavedArea) => {
-                    let updateLocation = await Location.findOneAndUpdate(
-                        district_id,
+                    console.log(`New Area ${newSavedArea}`)
+                    let updateLocation = await Location.findByIdAndUpdate(
+                        newArea.location_id,
                         { $push: { areas: newSavedArea } }
                         //{ $push: { areas: newSavedArea._id } }
                     )
                     if (updateLocation) {
+                        console.log(`New Location ${updateLocation}`)
                         res.redirect('/admin/area/list');
                     }
                     //req.flash('success', 'Area Info Saved !!')

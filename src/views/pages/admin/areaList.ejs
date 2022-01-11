@@ -46,7 +46,7 @@
                     </td>
                     <td class="action">
                         <a href="/admin/area/edit?explore=<%= area._id %>"><i class="fa fa-pencil"></i> Edit</a>
-                        <a href="/admin/status?model=Area&id=<%= area._id %>&status=<%= !area.status %>""><i class="fa fa-eye-slash"></i> Reactive</a>
+                        <a href="/admin/status?model=Area&id=<%= area._id %>&status=<%= !area.status %>""><i class="fa fa-eye-slash"></i><%= area.status === true ? "Deactive" : "Reactive" %></a>
                     </td>
                 </tr>
                 <% } }%>

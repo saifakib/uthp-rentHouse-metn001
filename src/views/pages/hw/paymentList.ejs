@@ -24,7 +24,6 @@
                     <th>Tenant</th>
                     <th>Invoice</th>
                     <th>Payment</th>
-                    <th>Action</th>
                 </tr>
                 <% if(paymentList.length > 0 ) { 
                 for(let payment of paymentList) { %>
@@ -38,9 +37,6 @@
 
                     <td> <%= payment.invoice %> </td>
                     <td> <%= payment.amount %>/-</td>
-                    <td>
-                        <a href="/hw/payment/edit?payment_id=<%= payment._id%>"></i> View</a>
-                    </td>
                 </tr>
                 <%} } else { %>
                 <tr>

@@ -1,4 +1,4 @@
-const { Tenant, Property, Location, Profile, Category, Area } = require('../../models')
+const { Tenant, Property, Payment, Profile } = require('../../models')
 const { validationResult } = require('express-validator')
 const errorFormatter = require('../../utils/validationErrorFormatter')
 const createError = require('http-errors')
@@ -133,5 +133,41 @@ exports.removeController = async (req, res, next) => {
         }
     } catch (err) {
         next(createError(500, err.message))
+    }
+}
+
+exports.viewController = async (req, res, next) => {
+    try {
+        const targetTenant = await Tenant.findById(req.query.id)
+            .populate({
+                path: 'house',
+                populate: {
+                    path: 'area_id category'
+                }
+            })
+
+        const registation = targetTenant.createdAt.getTime()
+        const present = new Date().getTime()
+        const diff = present - registation
+        const months = diff / 1000 / 60 / 60 / 24 / 30
+        const totalTargetPayment = Math.floor(months) * targetTenant.house.price
+
+        const totalPaymentList = await Payment.find({ $in: { '_id': targetTenant.payments } })
+        let totalPaymentAmount = 0
+        totalPaymentList.map(tp => {
+            totalPaymentAmount = totalPaymentAmount + tp.amount
+        })
+        let dues = (totalTargetPayment - totalPaymentAmount)
+        
+        res.render('pages/hw/tenantView', {
+            targetTenant,
+            totalMonth: months,
+            totalTargetPayment,
+            totalPaymentList,
+            totalPaymentAmount,
+            dues
+        })
+    } catch (err) {
+        next(createError(500))
     }
 }

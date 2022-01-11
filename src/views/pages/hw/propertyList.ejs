@@ -47,8 +47,7 @@
                     </td>
                     <td class="action">
                         <a href="/hw/property/edit?id=<%= property._id %>"><i class="fa fa-pencil"></i> Edit Details</a>
-                        <a href=""><i class="fa fa-picture-o"></i> Edit Image</a>
-                        <a href="/hw/property/status?id=<%= property._id %>&status=<%= property.status %>"><i
+                        <a href="/hw/status?model=Property&id=<%= property._id %>&status=<%= !property.status %>"><i
                                 class="fa fa-eye-slash"></i>
                             <%= property.status === true ? "Deactivate" : "Reactivate" %>
                         </a>

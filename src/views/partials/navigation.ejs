@@ -28,9 +28,10 @@
                                 <% for(let loc of locals.locations) {%>
                                 <li><a href='/'><%= loc.name %></a>
                                     <ul class="menu-overlay">
-                                        <% for(let area of loc.areas) {%>
+                                        <% for(let area of loc.areas) { 
+                                            if(area.status == true) { %>
                                         <li><a href='/<%= loc.name %>/<%= area.name %>/<%= area._id %>'><%= area.name %></a></li>
-                                        <% } %>
+                                        <% } }%>
                                     </ul>
                                 </li>
                                 <% } %>
