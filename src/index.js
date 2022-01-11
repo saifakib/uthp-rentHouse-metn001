@@ -2,7 +2,6 @@
 const express = require('express')
 const cors = require('cors')
 const path = require('path')
-const morgan = require('morgan')
 const session = require('express-session')
 const MongoDBStore = require('connect-mongodb-session')(session);
 const moment = require('moment')
@@ -11,6 +10,7 @@ const moment = require('moment')
 
 // internal imports 
 const { notFoundHandler, errorHandler } = require('./middleware/common/errorHandler')
+const morgan = require('./middleware/common/useMorgan')
 const PriviousLoad = require('./middleware/common/priviousLoad')
 const { bindUserWithRequest } = require('./middleware/auth')
 const setLocals = require('./middleware/setLocals')
@@ -25,7 +25,7 @@ const store = new MongoDBStore({
 });
 
 app.use(cors());
-app.use(morgan());
+morgan(app);
 
 // request parsers
 app.use(express.urlencoded({ extended: true }))

@@ -4,7 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "NODE_ENV=development nodemon src/server.js"
+    "start": "NODE_ENV=development nodemon src/server.js",
+    "prod": "NODE_ENV=production node src/server.js"
   },
   "repository": {
     "type": "git",
@@ -33,7 +34,8 @@
     "moment": "^2.29.1",
     "mongoose": "^6.0.12",
     "morgan": "^1.10.0",
-    "multer": "^1.4.4"
+    "multer": "^1.4.4",
+    "rotating-file-stream": "^3.0.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.14"
