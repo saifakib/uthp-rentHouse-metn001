@@ -1,0 +1,56 @@
+<%-include('../../partials/head.ejs')%>
+
+<div id="titlebar">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2> Payment List </h2>
+                <h2>Total: <%= totalPayment %>/-</h2>
+                <nav id="breadcrumbs">
+                    <ul>
+                        <li><a href="/"> Home</a></li>
+                        <li> Payment List </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <table class="manage-table responsive-table">
+                <tr>
+                    <th>Date</th>
+                    <th>Tenant</th>
+                    <th>Invoice</th>
+                    <th>Payment</th>
+                </tr>
+                <% if(paymentList.length > 0 ) { 
+                for(let payment of paymentList) { %>
+                <tr>
+                    <td> <%= payment.createdAt %> </td>
+                    <td>
+                        <h4>
+                            <%= payment.tenant.firstName +" "+ payment.tenant.lastName%>
+                        </h4>
+                    </td>
+
+                    <td> <%= payment.invoice %> </td>
+                    <td> <%= payment.amount %>/-</td>
+                </tr>
+                <%} } else { %>
+                <tr>
+                    <p style="text-align: center; font-size: 20px">There Is No Payment Till Now</p>
+                </tr>
+                <% } %>
+            </table>
+        </div>
+
+        <%- include('../../partials/sideBar.ejs')%>
+
+    </div>
+</div>
+
+
+<%- include('../../partials/footer.ejs')%>

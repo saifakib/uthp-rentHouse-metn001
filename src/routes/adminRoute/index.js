@@ -12,6 +12,8 @@ const categoryRoute = require('./categoryRoute')
 const hwRoute = require('./homeOwnerRoute')
 const tenantRoute = require('./tenantRoute')
 const profileRoute = require('./profileRoute')
+const paymentRoute = require('./paymentRoute')
+
 
 const { changeStatus } = require('../../controller/statusChangeController')
 
@@ -24,6 +26,7 @@ router.use('/area', areaRoute)
 router.use('/category', categoryRoute)
 router.use('/homeowner', hwRoute)
 router.use('/tenant', tenantRoute)
+router.use('/payment', paymentRoute)
 
 router.get('/status', changeStatus)
 

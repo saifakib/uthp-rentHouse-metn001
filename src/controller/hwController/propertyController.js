@@ -2,9 +2,10 @@ const { Property, Location, Profile, Category, Area } = require('../../models')
 const createError = require('http-errors')
 
 exports.propertyCreateGetController = async (req, res) => {
-    const locations = await Location.find()
+    //const locations = await Location.find()
+    const areas = await Area.find({ status: !false })
     res.render('pages/hw/propertyCreate', {
-        error: {}, value: {}, locations
+        error: {}, value: {}, areas
     })
 }
 

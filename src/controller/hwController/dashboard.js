@@ -1,4 +1,4 @@
-const { User, Payment } = require('../../models')
+const { User, Payment, Property } = require('../../models')
 const { validationResult } = require('express-validator')
 const errorFormatter = require('../../utils/validationErrorFormatter')
 const createError = require('http-errors')
@@ -11,8 +11,11 @@ exports.dashboardController = async (req, res, next) => {
             totalPayment = totalPayment + payment.amount
         })
         // Also need to fine monthly payment amount
+
+        const properties = await Property.find({ homeOwner_id: req.user._id }).count()
         res.render('pages/hw/dashboard', {
-            totalPayment
+            properties,
+            totalPayment: totalPayment || 0
         })
     } catch (err) {
         next(createError(400, err.message))

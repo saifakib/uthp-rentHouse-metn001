@@ -1,4 +1,4 @@
-const { User, Location, Property, Tenant } = require('../../models')
+const { User, Location, Property, Tenant, Payment } = require('../../models')
 const { validationResult } = require('express-validator')
 const errorFormatter = require('../../utils/validationErrorFormatter')
 const createError = require('http-errors')
@@ -22,12 +22,19 @@ exports.dashboardController = async (req, res, next) => {
             areasC += loc.areas.length
         })
 
+        const payments = await Payment.find()
+        let totalPayment = 0
+        payments.map(payment => {
+            totalPayment = totalPayment + payment.amount
+        })
+
         res.render('pages/admin/dashboard', {
             users,
             locations,
             totalProperties: propertiesC || 0,
             totalTenants: tenantC || 0,
-            totalAreas: areasC || 0
+            totalAreas: areasC || 0,
+            totalPayment: totalPayment || 0
         })
     } catch (err) {
         next(createError(204, err.message))
@@ -100,4 +107,22 @@ exports.tenantGetController = async (req, res, next) => {
             path: 'house'
         })
     res.render('pages/admin/tenantList', { tenants })
+}
+
+exports.paymentGetController = async (req, res, next) => {
+    try {
+        const paymentList = await Payment.find()
+            .populate({
+                path: 'tenant',
+                select: 'firstName lastName'
+            })
+        let totalPayment = 0
+        paymentList.map(payment => {
+            totalPayment = totalPayment + payment.amount
+        })
+        res.render('pages/admin/paymentList', { paymentList, totalPayment })
+    }
+    catch (err) {
+        next(createError(204, err.message))
+    }
 }

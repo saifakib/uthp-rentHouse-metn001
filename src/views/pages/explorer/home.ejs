@@ -46,9 +46,9 @@
                 <% } %>
             </div>
             <div class="clearfix"></div>
+            <% if(properties.length > 15) {%>
             <a href="/property-listing?page=1" class="btn-block">See More Property</a>
-
-
+            <% } %>
         </div>
     </div>
 </div>
@@ -64,8 +64,8 @@
             <div class="counter-box last">
                 <div class="counter-box-icon">
                     <i class="fa fa-users"></i>
-                    <span class="counter"><%= users.length %></span>
-                    <p>Total User</p>
+                    <span class="counter"><%= users.length -1 %></span>
+                    <p>Total House Owner</p>
                 </div>
             </div>
         </div>
@@ -74,7 +74,7 @@
                 <div class="counter-box-icon">
                     <i class="fa fa-home"></i>
                     <span class="counter"><%= totalproperties.length %></span>
-                    <p>Total House Listed</p>
+                    <p>Total House</p>
                 </div>
             </div>
         </div>
@@ -83,7 +83,7 @@
                 <div class="counter-box-icon">
                     <i class="fa fa-users"></i>
                     <span class="counter"><%= tenants.length %></span>
-                    <p>Total Tenant Listed</p>
+                    <p>Total Tenant</p>
                 </div>
             </div>
         </div>
