@@ -2,6 +2,21 @@
 
 Welcome to the Uthp RentHouse METN001 repository, a platform built using Express with CRUD features, adhering to best practices. This platform helps users find suitable houses based on their requirements and facilitates communication with the house owner.
 
+## Technology used
+
+Here uses a number libraries to work:
+
+- [NodeJs]
+- [ExpressJs]
+- [Cors]
+- [Mongoose]
+- [Bcrypt]
+- [morgan]
+- [multer]
+- [express-validator]
+- [ejs]
+- [express-session]
+
 ## Admin Responsibilities
 - Create districts
 - Define areas within districts
@@ -26,3 +41,21 @@ Here are some images showcasing house owner activities:
 ![House Owner Activity 4](./files/Screenshot%202023-10-01%20215113.png)
 ![House Owner Activity 4](./files/Screenshot%202023-10-01%20221046.png)
 
+
+--
+Before you begin, ensure you have met the following requirements:
+
+- Node.js: [Download and install Node.js](https://nodejs.org/)
+- MongoDB
+
+### Run this Project
+   ```bash
+   git clone https://github.com/saifakib/uthp-rentHouse-metn001.git
+   cd uthp-rentHouse-metn001
+   npm install
+   ```
+After you have create .env file in root directory, you can copy from .env.example file then
+### Run
+   ```bash
+   npm start
+   ```
