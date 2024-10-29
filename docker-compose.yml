@@ -6,10 +6,10 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "3000:3000"
+      - "8000:8000"
     environment:
       - MONGO_URI=mongodb://mongo:27017/mydatabase
-      - PORT=3000
+      - PORT=8000
       - NODE_ENV=development
     depends_on:
       - mongo
@@ -19,5 +19,6 @@ services:
     ports:
       - "27017:27017"
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=admin
-      - MONGO_INITDB_ROOT_PASSWORD=pass
+      - MONGO_INITDB_ROOT_USERNAME: admin
+      - MONGO_INITDB_ROOT_PASSWORD: password
+      - AUTH: admin

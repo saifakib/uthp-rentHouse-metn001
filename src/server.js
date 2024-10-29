@@ -14,7 +14,7 @@ mongoose
     })
     .then(() => {
         // server listen
-        app.listen(process.env.PORT, () => {
+        app.listen(8000, () => {
             console.log(`Server Listen On ${process.env.PORT}`)
         })
     })
