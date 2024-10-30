@@ -29,17 +29,18 @@ services:
 
   # Express Application
   express-app:
+    image: saifakib/find-house:latest
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: express-app
+    container_name: find-house
     restart: always
     ports:
       - '8000:8000'
     environment:
       PORT: 8000
       NODE_ENV: development
-      MongoURI: mongodb://admin:password@mongodb:27017/find_house_db?authSource=admin
+      MongoURI: mongodb://admin:pass@mongodb:27017/find_house_db?authSource=admin
     depends_on:
       - mongodb
 
