@@ -69,7 +69,7 @@ Make sure you have the following installed:
 ```bash
    npm install
 ```
-3.Create a .env file in the root directory using .env.example as a template. Configure necessary environment variables.
+Create a .env file in the root directory using .env.example as a template. Configure necessary environment variables.
 **Run this application**
    ```bash
    npm start
