@@ -60,17 +60,17 @@ Make sure you have the following installed:
 
 ### Local Setup
 
-1.**Clone the repository** and navigate into the project directory:
+**Clone the repository** and navigate into the project directory:
    ```bash
    git clone https://github.com/saifakib/uthp-rentHouse-metn001.git
    cd uthp-rentHouse-metn001
    ```
-2.**Install dependencies**
+**Install dependencies**
 ```bash
    npm install
-   ```
+```
 3.Create a .env file in the root directory using .env.example as a template. Configure necessary environment variables.
-4.**Run this application**
+**Run this application**
    ```bash
    npm start
    ```
