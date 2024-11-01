@@ -29,7 +29,7 @@ services:
 
   # Express Application
   express-app:
-    image: saifakib/find-house:latest
+    # image: saifakib/find-house:latest
     build:
       context: .
       dockerfile: Dockerfile
